@@ -9,7 +9,7 @@
     "dev:lan": "vite --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview --port 4173",
-    "test": "node --test \"src/lib/__tests__/*.test.js\""
+    "test": "node --test \"src/lib/__tests__/*.test.js\" \"src/api/__tests__/*.test.js\""
   },
   "dependencies": {
     "@mediapipe/tasks-vision": "1.2.0",

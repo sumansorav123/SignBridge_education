@@ -27,6 +27,7 @@ import StatCard from '@/components/dashboard/StatCard'
 import { useAuth } from '@/context/AuthContext'
 import { useToast } from '@/context/ToastContext'
 import api, { errorMessage } from '@/api/client'
+import { resources } from '@/api/resourceClient'
 import { apiUrl } from '@/api/config'
 import { LANGUAGES, languageName } from '@/lib/languages'
 import { formatDate, formatDuration } from '@/lib/format'
@@ -319,7 +320,7 @@ export function StudentClassrooms() {
 }
 
 export function StudentRecordings() {
-  const resource = useResource(async () => (await api.get('/student/recordings')).data)
+  const resource = useResource(async () => (await resources.listStudentRecordings()).data)
   if (resource.loading) return <FullPageLoader label="Loading recordings…" />
   if (resource.error) return <PageLoadError title="Recordings could not load" message={resource.error} retry={resource.reload} />
   return (
@@ -351,10 +352,10 @@ function RecordingPlayer({ role }) {
       setPageError('')
       try {
         const [detailResponse, tokenResponse] = await Promise.all([
-          api.get(`/recordings/${recordingId}`, {
+          resources.getRecording(recordingId, {
             params: { include_signs: true, sign_language: 'isl' },
           }),
-          api.post(`/recordings/${recordingId}/playback-token`),
+          resources.getRecordingPlaybackToken(recordingId),
         ])
         if (!active) return
         setRecording(detailResponse.data)
@@ -379,7 +380,7 @@ function RecordingPlayer({ role }) {
     }
     setTranslating(true)
     try {
-      const { data } = await api.get(`/recordings/${recordingId}/transcript`, {
+      const { data } = await resources.getRecordingTranscript(recordingId, {
         params: { language: nextLanguage, translate: true, include_signs: true, sign_language: 'isl' },
       })
       setTranscript(data.subtitles || [])
@@ -475,7 +476,7 @@ export function TeacherLectures() {
   async function stopLecture(lecture) {
     setStoppingId(lecture.id)
     try {
-      await api.post('/teacher/lectures/stop', { lecture_id: lecture.id })
+      await resources.stopLecture(lecture.id)
       success('Lecture ended', 'The lecture was saved to your history.')
       await resource.reload()
     } catch (error) {
@@ -520,7 +521,7 @@ export function TeacherRecordings() {
     if (!window.confirm(`Delete “${recording.title}”? This permanently deletes its video file.`)) return
     setDeletingId(recording.id)
     try {
-      await api.delete(`/recordings/${recording.id}`)
+      await resources.deleteRecording(recording.id)
       success('Recording deleted', 'The recording and its stored video were removed.')
       await resource.reload()
     } catch (error) {

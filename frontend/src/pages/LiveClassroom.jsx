@@ -24,10 +24,12 @@ import { Input, Select } from '@/components/ui/Field'
 import { useAuth } from '@/context/AuthContext'
 import { useToast } from '@/context/ToastContext'
 import api, { errorMessage } from '@/api/client'
+import { resources } from '@/api/resourceClient'
 import JoinRequestsPanel from '@/components/classrooms/JoinRequestsPanel'
 import { LANGUAGES, languageName } from '@/lib/languages'
 import { countMedia, mediaSummary, mergeParticipantMedia } from '@/lib/mediaState'
 import { createRecordingCapture } from '@/lib/recordingCapture'
+import ClassroomMaterials from '@/components/classrooms/ClassroomMaterials'
 import useClassroomSocket from '@/hooks/useClassroomSocket'
 import useLocalMedia from '@/hooks/useLocalMedia'
 import useSpeechRecognition from '@/hooks/useSpeechRecognition'
@@ -283,9 +285,7 @@ function LiveClassroom({ role }) {
 
   async function beginLecture() {
     try {
-      const { data } = await api.post('/teacher/lectures/start', {
-        classroom_id: classroomNumber,
-      })
+      const { data } = await resources.startLecture(classroom?.id)
       setLecture(data)
       captionStartedAtRef.current = Date.now()
       captionOffsetRef.current = 0
@@ -401,7 +401,7 @@ function LiveClassroom({ role }) {
       const mimeType = ['video/webm;codecs=vp9,opus', 'video/webm;codecs=vp8,opus', 'video/webm']
         .find(isSupportedMimeType)
       const recorder = new MediaRecorder(capture.stream, mimeType ? { mimeType } : undefined)
-      await api.post('/recordings/start', { lecture_id: lecture.id })
+      await resources.startRecording(lecture.id)
       recorderChunksRef.current = []
       const lectureStartedAt = lecture.started_at ? Date.parse(lecture.started_at) : Number.NaN
       recordingOffsetRef.current = Number.isFinite(lectureStartedAt)
@@ -470,10 +470,7 @@ function LiveClassroom({ role }) {
       form.append('start_offset_ms', String(offset))
       form.append('title', `${lecture.title} — recording`)
       form.append('file', file)
-      await api.post('/recordings/stop', form, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        timeout: 120000,
-      })
+      await resources.saveRecording(lecture.id, form)
       success('Recording saved', 'The lecture video and transcript are available in Recordings.')
     } catch (error) {
       toastError('Recording upload failed', errorMessage(error, 'The recording could not be saved.'))
@@ -504,7 +501,7 @@ function LiveClassroom({ role }) {
     speech.stop()
     if (recording) await stopRecording()
     try {
-      await api.post('/teacher/lectures/stop', { lecture_id: lecture.id })
+      await resources.stopLecture(lecture.id)
       setLecture((current) => ({ ...current, status: 'completed' }))
       success('Lecture ended', 'Students can review its captions and any saved recording.')
     } catch (error) {
@@ -712,6 +709,8 @@ function LiveClassroom({ role }) {
           ) : null}
         </section>
       </div>
+
+      <ClassroomMaterials classroomId={classroom?.id} role={role} />
 
       {role === 'teacher' ? (
         <section className="card p-5">

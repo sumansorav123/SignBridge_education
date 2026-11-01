@@ -10,6 +10,7 @@ import { Badge, EmptyState, FullPageLoader } from '@/components/ui/Misc'
 import { Input, Select, Textarea } from '@/components/ui/Field'
 import { useToast } from '@/context/ToastContext'
 import api, { errorMessage } from '@/api/client'
+import { resources } from '@/api/resourceClient'
 import { LANGUAGES } from '@/lib/languages'
 import { formatDate } from '@/lib/format'
 
@@ -117,13 +118,19 @@ export default function TeacherClassrooms() {
 
   async function startLecture(event) {
     event?.preventDefault()
-    if (!startRoom) return
+    const selectedRoom = classrooms.find(
+      (room) => Number(room.id) === Number(startRoom?.id) && room.status !== 'archived',
+    )
+    if (!selectedRoom) {
+      toastError('Could not start the lecture', 'Select an active classroom first.')
+      return
+    }
     setStarting(true)
     try {
-      const { data } = await api.post('/teacher/lectures/start', {
-        classroom_id: startRoom.id,
-        title: lectureTitle.trim() || null,
-      })
+      const { data } = await resources.startLecture(
+        selectedRoom.id,
+        lectureTitle.trim() || null,
+      )
       setStartRoom(null)
       setLectureTitle('')
       success('Lecture started', 'Allow camera and microphone access in the live room.')

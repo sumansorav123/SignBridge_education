@@ -26,6 +26,7 @@ import { Input } from '@/components/ui/Field'
 import { useAuth } from '@/context/AuthContext'
 import { useToast } from '@/context/ToastContext'
 import api, { errorMessage } from '@/api/client'
+import { resources } from '@/api/resourceClient'
 import { formatDate, formatDuration, greeting } from '@/lib/format'
 
 export default function TeacherDashboard() {
@@ -65,13 +66,19 @@ export default function TeacherDashboard() {
 
   async function startLecture(event) {
     event.preventDefault()
-    if (!startForm.classroom_id) return
+    const selectedClassroom = activeClassrooms.find(
+      (classroom) => Number(classroom.id) === Number(startForm.classroom_id),
+    )
+    if (!selectedClassroom) {
+      toastError('Could not start the lecture', 'Select an active classroom first.')
+      return
+    }
     setStarting(true)
     try {
-      const { data: lecture } = await api.post('/teacher/lectures/start', {
-        classroom_id: Number(startForm.classroom_id),
-        title: startForm.title.trim() || null,
-      })
+      const { data: lecture } = await resources.startLecture(
+        selectedClassroom.id,
+        startForm.title.trim() || null,
+      )
       success('Lecture started', 'Your live classroom is ready. Allow camera and microphone access.')
       setStartOpen(false)
       navigate(`/teacher/classrooms/${lecture.classroom_id}`)
