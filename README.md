@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SignBridge
 
 Inclusive live-learning platform: one teacher, hearing and deaf students in the same live classroom.
@@ -54,3 +55,6 @@ cd frontend && npm run build
 * **Captions show "translation unavailable"** – no translation provider reachable/configured; set a key or LibreTranslate URL.
 * **Avatar shows a WebGL message** – browser/GPU lacks WebGL; captions and text sign chips still work.
 * **Login with demo accounts fails in production** – demo seeding is for development only.
+=======
+# SignBridge_education
+>>>>>>> c40948d924b8fa39018b67d1287a7393cae3d3ae
