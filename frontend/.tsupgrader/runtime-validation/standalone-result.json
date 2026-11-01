@@ -1,0 +1,100 @@
+{
+  "planHash": "8a38b06276a48853eb85fad9d07a1404ee677be1e23afe75f6ea4c352df57a09",
+  "phase": "standalone",
+  "recordedAtUtc": "2026-11-01T07:09:34.2966779Z",
+  "retryCount": 2,
+  "resetBaseline": false,
+  "complete": true,
+  "result": {
+    "setupSucceeded": true,
+    "setupDurationMs": 0,
+    "setupFailureOutput": null,
+    "assertions": [
+      {
+        "name": "tests-pass",
+        "kind": "process",
+        "verificationMethod": "test-results",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E signbridge-frontend@1.0.0 test\r\n\u003E node --test \u0022src/lib/__tests__/*.test.js\u0022\r\n\r\n\u2714 skeleton has 21 landmarks and valid connections (3.8309ms)\r\n\u2714 summarizeHands handles two hands, mirroring and empty results (5.6398ms)\r\n\u2714 error messages and camera support detection (1.4076ms)\r\n\u2714 defaults to public STUN only and no TURN (4.5351ms)\r\n\u2714 adds TURN with credentials, multiple urls, comma or space separated (1.1747ms)\r\n\u2714 TURN without credentials is skipped, not emitted half-configured (0.6617ms)\r\n\u2714 custom STUN replaces defaults and invalid schemes are dropped (1.4954ms)\r\n\u2714 every vocabulary value used by the real lexicon is mapped (no random fallbacks) (93.2104ms)\r\n\u2714 no lexicon entry claims to be verified without reviewer evidence (2.4982ms)\r\n\u2714 all handshape tables are well formed (0.6189ms)\r\n\u2714 timeline segments never overlap and keep order (0.7143ms)\r\n\u2714 unsupported gloss becomes a text-only segment with no animation (4.4138ms)\r\n\u2714 speed scales durations; gaps/active segment lookup are consistent (0.9292ms)\r\n\u2714 hand starts and ends at rest and reaches the lexicon location mid-sign (3.9698ms)\r\n\u2714 left hand mirrors x; movement samples are finite (1.4252ms)\r\n\u2714 review labels are honest (28.2783ms)\r\n\u2714 recording keeps a stable video track while the displayed source changes (4.7512ms)\r\n\u2714 recording outputs black frames until source video is ready (0.4349ms)\r\n\u2714 recording preserves the source aspect ratio inside the fixed output frame (3.545ms)\r\n\u2714 recording reports a frame-capture failure once and keeps the loop alive (1.2407ms)\r\n\u2714 recording rejects unsupported canvas capture (5.3678ms)\r\n\u2714 peer retry is bounded with exponential backoff (2.4536ms)\r\n\u2714 connection state derivation (0.7709ms)\r\n\u2714 signalling guards (7.4915ms)\r\n\u2714 websocket reconnect policy never retries auth/forbidden closes (0.8474ms)\r\n\u2139 tests 25\r\n\u2139 suites 0\r\n\u2139 pass 25\r\n\u2139 fail 0\r\n\u2139 cancelled 0\r\n\u2139 skipped 0\r\n\u2139 todo 0\r\n\u2139 duration_ms 1987.2378\r\n",
+        "durationMs": 8909,
+        "testResults": {
+          "testFramework": "unknown",
+          "runnerDetectedFrom": "none",
+          "testsTotal": 0,
+          "testsPassed": 0,
+          "testsFailed": 0,
+          "testsSkipped": 0,
+          "parseFailed": true
+        }
+      },
+      {
+        "name": "production-build",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E signbridge-frontend@1.0.0 build\r\n\u003E vite build\r\n\r\n\u001B[36mvite v6.4.5 \u001B[32mbuilding for production...\u001B[36m\u001B[39m\r\ntransforming...\r\n\u001B[32m\u2713\u001B[39m 2290 modules transformed.\r\nrendering chunks...\r\ncomputing gzip size...\r\n\u001B[2mdist/\u001B[22m\u001B[32mindex.html                           \u001B[39m\u001B[1m\u001B[2m  1.12 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:   0.59 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[35massets/index-RqqP3K5W.css            \u001B[39m\u001B[1m\u001B[2m 79.03 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:  12.14 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[36massets/HandTrackingDemo-D4nz7P4g.js  \u001B[39m\u001B[1m\u001B[2m  6.80 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:   3.01 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[36massets/vision_bundle-B9efVf8h.js     \u001B[39m\u001B[1m\u001B[2m155.90 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:  46.58 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[36massets/IslAvatar-BzzI31pQ.js         \u001B[39m\u001B[1m\u001B[2m537.24 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip: 135.82 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[36massets/index-J-owMkod.js             \u001B[39m\u001B[1m\u001B[2m938.05 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip: 278.27 kB\u001B[22m\r\n\u001B[32m\u2713 built in 36.48s\u001B[39m\r\n",
+        "durationMs": 44429
+      },
+      {
+        "name": "vite-root-http-probe",
+        "kind": "http-probe",
+        "verificationMethod": "http-status",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": null,
+        "outputSample": "HTTP 200\n\u003C!doctype html\u003E\n\u003Chtml lang=\u0022en\u0022 class=\u0022scroll-smooth\u0022\u003E\n  \u003Chead\u003E\n    \u003Cscript type=\u0022module\u0022\u003Eimport { injectIntoGlobalHook } from \u0022/@react-refresh\u0022;\ninjectIntoGlobalHook(window);\nwindow.$RefreshReg$ = () =\u003E {};\nwindow.$RefreshSig$ = () =\u003E (type) =\u003E type;\u003C/script\u003E\n\n    \u003Cscript type=\u0022module\u0022 src=\u0022/@vite/client\u0022\u003E\u003C/script\u003E\n\n    \u003Cmeta charset=\u0022UTF-8\u0022 /\u003E\n    \u003Cmeta name=\u0022viewport\u0022 content=\u0022width=device-width, initial-scale=1.0\u0022 /\u003E\n    \u003Cmeta name=\u0022theme-color\u0022 content=\u0022#08292d\u0022 /\u003E\n    \u003Cmeta\n      name=\u0022description\u0022\n      content=\u0022SignBridge is an inclusive live learning platform with real-time multilingual captions and a synchronized 3D Indian Sign Language avatar for deaf and hearing students.\u0022\n    /\u003E\n    \u003Clink rel=\u0022icon\u0022 type=\u0022image/svg\u002Bxml\u0022 href=\u0022/favicon.svg\u0022 /\u003E\n    \u003Clink rel=\u0022preconnect\u0022 href=\u0022https://fonts.googleapis.com\u0022 /\u003E\n    \u003Clink rel=\u0022preconnect\u0022 href=\u0022https://fonts.gstatic.com\u0022 crossorigin /\u003E\n    \u003Clink\n      href=\u0022https://fonts.googleapis.com/css2?family=Plus\u002BJakarta\u002BSans:wght@400;500;600;700;800\u0026family=Sora:wght@500;600;700;800\u0026display=swap\u0022\n      rel=\u0022stylesheet\u0022\n    /\u003E\n    \u003Ctitle\u003ESignBridge \u2014 One classroom, every learner\u003C/title\u003E\n  \u003C/head\u003E\n  \u003Cbody\u003E\n    \u003Cdiv id=\u0022root\u0022\u003E\u003C/div\u003E\n    \u003Cscript type=\u0022module\u0022 src=\u0022/src/main.jsx?t=1793516906802\u0022\u003E\u003C/script\u003E\n  \u003C/body\u003E\n\u003C/html\u003E\n",
+        "durationMs": 96
+      }
+    ],
+    "executions": [
+      {
+        "source": "tests-pass",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "test"
+        ],
+        "cwd": "C:\\Users\\Hello\\Downloads\\SignBridge_Final_Handover\\SignBridge\\frontend",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "production-build",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "run",
+          "build"
+        ],
+        "cwd": "C:\\Users\\Hello\\Downloads\\SignBridge_Final_Handover\\SignBridge\\frontend",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "vite-root-http-probe",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "run",
+          "dev",
+          "--",
+          "--host",
+          "127.0.0.1"
+        ],
+        "cwd": "C:\\Users\\Hello\\Downloads\\SignBridge_Final_Handover\\SignBridge\\frontend",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      }
+    ]
+  }
+}

@@ -1,0 +1,3669 @@
+{
+  "language": "isl",
+  "name": "Indian Sign Language",
+  "version": "1.1.0",
+  "source": "SignBridge ISL starter lexicon (handshape-location-movement reference mapping)",
+  "note": "Experimental ISL animations generated from handshape-location-movement descriptions. NO entry has been reviewed by a qualified ISL interpreter, so none is marked verified. To mark an entry reviewed set review_status='interpreter_reviewed' and fill reviewed_by and reviewed_at; an entry without that evidence is always treated as experimental. Words outside this lexicon are never animated.",
+  "entries": [
+    {
+      "gloss": "HELLO",
+      "label": "Hello",
+      "category": "greeting",
+      "aliases": [
+        "hello",
+        "hi",
+        "hey",
+        "greetings",
+        "namaste"
+      ],
+      "description": "Open right hand at shoulder height, palm forward, wave gently twice with a smile.",
+      "animation": {
+        "duration_ms": 1100,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "open",
+            "location": "shoulder",
+            "movement": "wave",
+            "repetitions": 2,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "GOOD-MORNING",
+      "label": "Good morning",
+      "category": "greeting",
+      "aliases": [
+        "good morning",
+        "morning greeting"
+      ],
+      "description": "Flat right hand at the chin moves forward and slightly up, with a smile.",
+      "animation": {
+        "duration_ms": 1100,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chin",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "GOOD-AFTERNOON",
+      "label": "Good afternoon",
+      "category": "greeting",
+      "aliases": [
+        "good afternoon"
+      ],
+      "description": "Flat right hand at the chin moves outward to the right, with a smile.",
+      "animation": {
+        "duration_ms": 1100,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chin",
+            "movement": "right",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "GOOD-EVENING",
+      "label": "Good evening",
+      "category": "greeting",
+      "aliases": [
+        "good evening"
+      ],
+      "description": "Flat right hand at the chin moves downward, with a calm smile.",
+      "animation": {
+        "duration_ms": 1100,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chin",
+            "movement": "down",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "GOOD-NIGHT",
+      "label": "Good night",
+      "category": "greeting",
+      "aliases": [
+        "good night",
+        "goodnight"
+      ],
+      "description": "Flat right hand at the chin moves down twice, with the head tipped slightly forward.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chin",
+            "movement": "down",
+            "repetitions": 2,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "forward",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "THANK-YOU",
+      "label": "Thank you",
+      "category": "greeting",
+      "aliases": [
+        "thank you",
+        "thanks",
+        "thankyou",
+        "thank u",
+        "thank you very much"
+      ],
+      "description": "Fingertips of the flat right hand touch the chin and move forward toward the listener, with a smile.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chin",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "PLEASE",
+      "label": "Please",
+      "category": "greeting",
+      "aliases": [
+        "please",
+        "kindly"
+      ],
+      "description": "Flat right palm circles on the chest, with a polite smile.",
+      "animation": {
+        "duration_ms": 1100,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "SORRY",
+      "label": "Sorry",
+      "category": "greeting",
+      "aliases": [
+        "sorry",
+        "apologies",
+        "apologise",
+        "apologize"
+      ],
+      "description": "Fist circles on the chest with a regretful expression and a slight forward head tilt.",
+      "animation": {
+        "duration_ms": 1100,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "fist",
+            "location": "chest",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "sad",
+        "head": "forward",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "WELCOME",
+      "label": "Welcome",
+      "category": "greeting",
+      "aliases": [
+        "welcome"
+      ],
+      "description": "Both open hands move from the chest forward toward the listener, with a smile.",
+      "animation": {
+        "duration_ms": 1100,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "GOODBYE",
+      "label": "Goodbye",
+      "category": "greeting",
+      "aliases": [
+        "goodbye",
+        "good bye",
+        "bye",
+        "see you"
+      ],
+      "description": "Open right hand at shoulder height waves outward twice.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "open",
+            "location": "shoulder",
+            "movement": "wave",
+            "repetitions": 2,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "NICE-TO-MEET-YOU",
+      "label": "Nice to meet you",
+      "category": "greeting",
+      "aliases": [
+        "nice to meet you",
+        "pleased to meet you"
+      ],
+      "description": "Both open hands move forward from the chest toward the listener with a warm smile.",
+      "animation": {
+        "duration_ms": 1300,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "HOW-ARE-YOU",
+      "label": "How are you?",
+      "category": "greeting",
+      "aliases": [
+        "how are you",
+        "how are you doing",
+        "how do you do"
+      ],
+      "description": "Both open hands at the chest move forward with raised eyebrows and a question expression.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "question",
+        "head": "tilt_left",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "FINE",
+      "label": "Fine",
+      "category": "basic",
+      "aliases": [
+        "fine",
+        "i am fine",
+        "i'm fine",
+        "im fine",
+        "i am good"
+      ],
+      "description": "Thumbs up at chest height with a small nod and a smile.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "thumbs_up",
+            "location": "chest",
+            "movement": "up",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "EXCUSE-ME",
+      "label": "Excuse me",
+      "category": "greeting",
+      "aliases": [
+        "excuse me",
+        "excuse"
+      ],
+      "description": "Flat right hand brushes forward across the chest with a polite expression.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "arc",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "CONGRATULATIONS",
+      "label": "Congratulations",
+      "category": "greeting",
+      "aliases": [
+        "congratulations",
+        "congrats",
+        "well done"
+      ],
+      "description": "Both open hands rise from chest height with a broad smile.",
+      "animation": {
+        "duration_ms": 1300,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "up",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "up",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "I",
+      "label": "I / me",
+      "category": "pronoun",
+      "aliases": [
+        "i",
+        "me"
+      ],
+      "description": "Index finger points to the signer's chest.",
+      "animation": {
+        "duration_ms": 750,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "chest",
+            "movement": "tap",
+            "repetitions": 1,
+            "palm": "self"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "YOU",
+      "label": "You",
+      "category": "pronoun",
+      "aliases": [
+        "you",
+        "u"
+      ],
+      "description": "Index finger points forward toward the listener.",
+      "animation": {
+        "duration_ms": 750,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "forward",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "MY",
+      "label": "My / mine",
+      "category": "pronoun",
+      "aliases": [
+        "my",
+        "mine",
+        "mine own"
+      ],
+      "description": "Flat hand rests on the chest, indicating possession.",
+      "animation": {
+        "duration_ms": 750,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "tap",
+            "repetitions": 1,
+            "palm": "self"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "YOUR",
+      "label": "Your / yours",
+      "category": "pronoun",
+      "aliases": [
+        "your",
+        "yours"
+      ],
+      "description": "Flat hand moves forward toward the listener, indicating possession.",
+      "animation": {
+        "duration_ms": 750,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "forward",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "HE",
+      "label": "He / him",
+      "category": "pronoun",
+      "aliases": [
+        "he",
+        "him",
+        "his"
+      ],
+      "description": "Index finger points to the right side.",
+      "animation": {
+        "duration_ms": 750,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "right_side",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "SHE",
+      "label": "She / her",
+      "category": "pronoun",
+      "aliases": [
+        "she",
+        "her",
+        "hers"
+      ],
+      "description": "Index finger points to the right side with a contextual facial cue.",
+      "animation": {
+        "duration_ms": 750,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "right_side",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "tilt_right",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "WE",
+      "label": "We / us",
+      "category": "pronoun",
+      "aliases": [
+        "we",
+        "us",
+        "our",
+        "ours"
+      ],
+      "description": "Index finger moves in a small arc from one side of the chest to the other.",
+      "animation": {
+        "duration_ms": 850,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "chest",
+            "movement": "arc",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "THEY",
+      "label": "They / them",
+      "category": "pronoun",
+      "aliases": [
+        "they",
+        "them",
+        "their",
+        "theirs"
+      ],
+      "description": "Index finger points to the right and sweeps in a small circle.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "right_side",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "TEACHER",
+      "label": "Teacher",
+      "category": "people",
+      "aliases": [
+        "teacher",
+        "teachers",
+        "professor",
+        "instructor",
+        "educator"
+      ],
+      "description": "Both flat hands start near the forehead and move forward, then the person marker is implied by context.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "forehead",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "forehead",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "STUDENT",
+      "label": "Student",
+      "category": "people",
+      "aliases": [
+        "student",
+        "students",
+        "pupil",
+        "learner"
+      ],
+      "description": "Flat right hand at the forehead moves down toward the open left palm at chest height.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "forehead",
+            "movement": "down",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "up"
+          }
+        ],
+        "face": "neutral",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "FRIEND",
+      "label": "Friend",
+      "category": "people",
+      "aliases": [
+        "friend",
+        "friends",
+        "buddy"
+      ],
+      "description": "Both hooked index fingers at chest height move toward each other.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "hooked",
+            "location": "chest",
+            "movement": "approach",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "hooked",
+            "location": "chest",
+            "movement": "approach",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "MOTHER",
+      "label": "Mother",
+      "category": "people",
+      "aliases": [
+        "mother",
+        "mom",
+        "mum",
+        "mummy"
+      ],
+      "description": "Flat right hand touches the chin, marking the female relative.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chin",
+            "movement": "tap",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "FATHER",
+      "label": "Father",
+      "category": "people",
+      "aliases": [
+        "father",
+        "dad",
+        "daddy"
+      ],
+      "description": "Flat right hand touches the forehead, marking the male relative.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "forehead",
+            "movement": "tap",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "INTERPRETER",
+      "label": "Interpreter",
+      "category": "people",
+      "aliases": [
+        "interpreter",
+        "translator"
+      ],
+      "description": "Both index hands circle alternately in front of the chest, representing the exchange of language.",
+      "animation": {
+        "duration_ms": 1500,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "chest",
+            "movement": "circle",
+            "repetitions": 2,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "point",
+            "location": "chest",
+            "movement": "circle",
+            "repetitions": 2,
+            "palm": "forward"
+          }
+        ],
+        "face": "focus",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "DEAF",
+      "label": "Deaf",
+      "category": "people",
+      "aliases": [
+        "deaf",
+        "hard of hearing"
+      ],
+      "description": "Index finger touches near the ear and moves down toward the chin, with a neutral, respectful expression.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "ear",
+            "movement": "down",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "HEARING",
+      "label": "Hearing",
+      "category": "people",
+      "aliases": [
+        "hearing",
+        "hearing person"
+      ],
+      "description": "Index finger circles near the ear, indicating sound perception.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "ear",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "NAME",
+      "label": "Name",
+      "category": "people",
+      "aliases": [
+        "name",
+        "names",
+        "named",
+        "called"
+      ],
+      "description": "Flat right hand taps twice at chest height.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "tap",
+            "repetitions": 2,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "CLASS",
+      "label": "Class",
+      "category": "classroom",
+      "aliases": [
+        "class",
+        "classes",
+        "classroom",
+        "lesson",
+        "lecture"
+      ],
+      "description": "Both open hands circle forward at chest height, representing a group.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "BOOK",
+      "label": "Book",
+      "category": "classroom",
+      "aliases": [
+        "book",
+        "books",
+        "notebook",
+        "textbook"
+      ],
+      "description": "Both flat palms meet and open like a book.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "open_close",
+            "repetitions": 1,
+            "palm": "up"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "open_close",
+            "repetitions": 1,
+            "palm": "up"
+          }
+        ],
+        "face": "neutral",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "READ",
+      "label": "Read",
+      "category": "classroom",
+      "aliases": [
+        "read",
+        "reading",
+        "reads"
+      ],
+      "description": "Right index finger moves across the open left palm from left to right.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "left_side",
+            "movement": "right",
+            "repetitions": 1,
+            "palm": "down"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "up"
+          }
+        ],
+        "face": "focus",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "WRITE",
+      "label": "Write",
+      "category": "classroom",
+      "aliases": [
+        "write",
+        "writing",
+        "writes",
+        "note"
+      ],
+      "description": "Pinched right hand moves across the open left palm as if writing.",
+      "animation": {
+        "duration_ms": 1300,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "pinch",
+            "location": "left_side",
+            "movement": "right",
+            "repetitions": 2,
+            "palm": "down"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "up"
+          }
+        ],
+        "face": "focus",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "QUESTION",
+      "label": "Question",
+      "category": "classroom",
+      "aliases": [
+        "question",
+        "ask",
+        "asks",
+        "doubt"
+      ],
+      "description": "Index finger draws a small upward question mark in front of the body with a question expression.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "forward",
+            "movement": "up",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "question",
+        "head": "tilt_left",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "ANSWER",
+      "label": "Answer",
+      "category": "classroom",
+      "aliases": [
+        "answer",
+        "answers",
+        "reply",
+        "respond"
+      ],
+      "description": "Both flat hands move forward from the chest in a giving motion with a slight smile.",
+      "animation": {
+        "duration_ms": 1100,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "UNDERSTAND",
+      "label": "Understand",
+      "category": "classroom",
+      "aliases": [
+        "understand",
+        "understood",
+        "get it",
+        "comprehend"
+      ],
+      "description": "Fist near the forehead opens while the head nods.",
+      "animation": {
+        "duration_ms": 1100,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "fist",
+            "location": "forehead",
+            "movement": "open_close",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "NOT-UNDERSTAND",
+      "label": "Do not understand",
+      "category": "classroom",
+      "aliases": [
+        "not understand",
+        "do not understand",
+        "don't understand",
+        "dont understand",
+        "did not understand",
+        "didn't understand",
+        "confused"
+      ],
+      "description": "Fist near the forehead opens while the head shakes side to side.",
+      "animation": {
+        "duration_ms": 1300,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "fist",
+            "location": "forehead",
+            "movement": "open_close",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "sad",
+        "head": "shake",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "LEARN",
+      "label": "Learn",
+      "category": "classroom",
+      "aliases": [
+        "learn",
+        "learning",
+        "learns",
+        "study",
+        "studying"
+      ],
+      "description": "Flat right hand moves from the open left palm up toward the forehead.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "left_side",
+            "movement": "up",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "up"
+          }
+        ],
+        "face": "focus",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "TEACH",
+      "label": "Teach",
+      "category": "classroom",
+      "aliases": [
+        "teach",
+        "teaches",
+        "teaching"
+      ],
+      "description": "Both flat hands move forward from the forehead, representing the transfer of knowledge.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "forehead",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "forehead",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "LISTEN",
+      "label": "Listen",
+      "category": "classroom",
+      "aliases": [
+        "listen",
+        "listening",
+        "hear"
+      ],
+      "description": "Cupped right hand moves toward the ear.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "cup",
+            "location": "ear",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "focus",
+        "head": "tilt_right",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "SPEAK",
+      "label": "Speak",
+      "category": "classroom",
+      "aliases": [
+        "speak",
+        "speaking",
+        "talk",
+        "say",
+        "says"
+      ],
+      "description": "Open right hand moves forward from the mouth.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "open",
+            "location": "mouth",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "SIGN",
+      "label": "Sign",
+      "category": "classroom",
+      "aliases": [
+        "sign",
+        "signing",
+        "signed"
+      ],
+      "description": "Both index hands circle forward at chest height, representing signing.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "forward",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "point",
+            "location": "forward",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "focus",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "SIGN-LANGUAGE",
+      "label": "Sign language",
+      "category": "classroom",
+      "aliases": [
+        "sign language",
+        "signlanguage",
+        "isl"
+      ],
+      "description": "Both index hands circle near the mouth, the established sign for sign language.",
+      "animation": {
+        "duration_ms": 1400,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "mouth",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "point",
+            "location": "mouth",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "focus",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "LANGUAGE",
+      "label": "Language",
+      "category": "classroom",
+      "aliases": [
+        "language",
+        "languages"
+      ],
+      "description": "Both index hands circle outward near the mouth.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "mouth",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "point",
+            "location": "mouth",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "HOMEWORK",
+      "label": "Homework",
+      "category": "classroom",
+      "aliases": [
+        "homework",
+        "assignment",
+        "assignments"
+      ],
+      "description": "Flat right hand taps the open left palm twice.",
+      "animation": {
+        "duration_ms": 1100,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "left_side",
+            "movement": "tap",
+            "repetitions": 2,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "up"
+          }
+        ],
+        "face": "focus",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "EXAM",
+      "label": "Exam",
+      "category": "classroom",
+      "aliases": [
+        "exam",
+        "exams",
+        "test",
+        "tests",
+        "examination"
+      ],
+      "description": "Index finger writes across the open left palm twice.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "left_side",
+            "movement": "right",
+            "repetitions": 2,
+            "palm": "down"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "up"
+          }
+        ],
+        "face": "focus",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "EXAMPLE",
+      "label": "Example",
+      "category": "classroom",
+      "aliases": [
+        "example",
+        "examples",
+        "for example",
+        "instance"
+      ],
+      "description": "Both flat hands move forward together from the chest.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "CORRECT",
+      "label": "Correct",
+      "category": "classroom",
+      "aliases": [
+        "correct",
+        "right",
+        "exactly",
+        "accurate"
+      ],
+      "description": "Thumbs up at chest height with a nod and a smile.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "thumbs_up",
+            "location": "chest",
+            "movement": "up",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "WRONG",
+      "label": "Wrong",
+      "category": "classroom",
+      "aliases": [
+        "wrong",
+        "incorrect",
+        "mistake"
+      ],
+      "description": "Thumbs down at chest height with a frown and a small head shake.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "thumbs_down",
+            "location": "chest",
+            "movement": "down",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "frown",
+        "head": "shake",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "HELP",
+      "label": "Help",
+      "category": "classroom",
+      "aliases": [
+        "help",
+        "helps",
+        "assist",
+        "support"
+      ],
+      "description": "Right fist rests on the open left palm and both hands rise together.",
+      "animation": {
+        "duration_ms": 1100,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "fist",
+            "location": "left_side",
+            "movement": "up",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "up",
+            "repetitions": 1,
+            "palm": "up"
+          }
+        ],
+        "face": "neutral",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "REPEAT",
+      "label": "Repeat",
+      "category": "classroom",
+      "aliases": [
+        "repeat",
+        "repeats",
+        "again",
+        "one more time",
+        "once more"
+      ],
+      "description": "Index finger circles over the open left palm.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "left_side",
+            "movement": "circle",
+            "repetitions": 2,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "up"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "FINISH",
+      "label": "Finish",
+      "category": "classroom",
+      "aliases": [
+        "finish",
+        "finished",
+        "done",
+        "complete",
+        "completed"
+      ],
+      "description": "Both open hands turn and move outward from the chest.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "away",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "away",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "START",
+      "label": "Start",
+      "category": "classroom",
+      "aliases": [
+        "start",
+        "starts",
+        "begin",
+        "beginning"
+      ],
+      "description": "Both open palms rise from waist height.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "open",
+            "location": "waist",
+            "movement": "up",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "open",
+            "location": "waist",
+            "movement": "up",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "IMPORTANT",
+      "label": "Important",
+      "category": "classroom",
+      "aliases": [
+        "important",
+        "importantly"
+      ],
+      "description": "Both flat hands move forward from the chest twice.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "forward",
+            "repetitions": 2,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "forward",
+            "repetitions": 2,
+            "palm": "forward"
+          }
+        ],
+        "face": "focus",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "COMPUTER",
+      "label": "Computer",
+      "category": "classroom",
+      "aliases": [
+        "computer",
+        "computers",
+        "laptop"
+      ],
+      "description": "Both index hands circle in front of the body, representing a screen.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "forward",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "point",
+            "location": "forward",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "focus",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "MATHEMATICS",
+      "label": "Mathematics",
+      "category": "classroom",
+      "aliases": [
+        "mathematics",
+        "math",
+        "maths"
+      ],
+      "description": "Both open hands twist at chest height.",
+      "animation": {
+        "duration_ms": 1300,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "twist",
+            "repetitions": 2,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "twist",
+            "repetitions": 2,
+            "palm": "forward"
+          }
+        ],
+        "face": "focus",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "SCIENCE",
+      "label": "Science",
+      "category": "classroom",
+      "aliases": [
+        "science",
+        "sciences"
+      ],
+      "description": "Both clawed hands rise at chest height with a focused expression.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "claw",
+            "location": "chest",
+            "movement": "up",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "claw",
+            "location": "chest",
+            "movement": "up",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "focus",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "SCHOOL",
+      "label": "School",
+      "category": "classroom",
+      "aliases": [
+        "school",
+        "schools",
+        "college",
+        "university",
+        "campus"
+      ],
+      "description": "Both flat hands circle at chest height.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "TODAY",
+      "label": "Today",
+      "category": "time",
+      "aliases": [
+        "today",
+        "nowadays"
+      ],
+      "description": "Flat right hand moves down at chest height, indicating the present day.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "down",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "TOMORROW",
+      "label": "Tomorrow",
+      "category": "time",
+      "aliases": [
+        "tomorrow"
+      ],
+      "description": "Thumbs up at chest height moves forward, indicating the future.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "thumbs_up",
+            "location": "chest",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "YESTERDAY",
+      "label": "Yesterday",
+      "category": "time",
+      "aliases": [
+        "yesterday"
+      ],
+      "description": "Thumbs down at chest height moves backward, indicating the past.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "thumbs_down",
+            "location": "chest",
+            "movement": "back",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "MORNING",
+      "label": "Morning",
+      "category": "time",
+      "aliases": [
+        "morning",
+        "mornings"
+      ],
+      "description": "Open right hand rises at chest height, like the sun rising.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "up",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "AFTERNOON",
+      "label": "Afternoon",
+      "category": "time",
+      "aliases": [
+        "afternoon",
+        "afternoons"
+      ],
+      "description": "Flat right forearm moves horizontally to the right at chest height.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "right",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "EVENING",
+      "label": "Evening",
+      "category": "time",
+      "aliases": [
+        "evening",
+        "evenings"
+      ],
+      "description": "Flat right hand moves downward at chest height.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "down",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "NOW",
+      "label": "Now",
+      "category": "time",
+      "aliases": [
+        "now",
+        "currently",
+        "right now"
+      ],
+      "description": "Both flat hands move down at waist height.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "waist",
+            "movement": "down",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "waist",
+            "movement": "down",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "focus",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "LATER",
+      "label": "Later",
+      "category": "time",
+      "aliases": [
+        "later",
+        "afterwards",
+        "afterward"
+      ],
+      "description": "Flat right hand moves forward from chest height.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "TIME",
+      "label": "Time",
+      "category": "time",
+      "aliases": [
+        "time",
+        "times"
+      ],
+      "description": "Right index finger circles over the open left palm.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "left_side",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "up"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "YES",
+      "label": "Yes",
+      "category": "basic",
+      "aliases": [
+        "yes",
+        "yeah",
+        "yep"
+      ],
+      "description": "Fist nods at chest height while the head nods.",
+      "animation": {
+        "duration_ms": 800,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "fist",
+            "location": "chest",
+            "movement": "tap",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "NO",
+      "label": "No",
+      "category": "basic",
+      "aliases": [
+        "no",
+        "nope",
+        "nah"
+      ],
+      "description": "Index finger shakes side to side at chest height while the head shakes.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "chest",
+            "movement": "shake",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "shake",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "NOT",
+      "label": "Not",
+      "category": "basic",
+      "aliases": [
+        "not",
+        "never"
+      ],
+      "description": "Index finger shakes side to side at chest height with a negative head shake.",
+      "animation": {
+        "duration_ms": 850,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "chest",
+            "movement": "shake",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "shake",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "GOOD",
+      "label": "Good",
+      "category": "basic",
+      "aliases": [
+        "good",
+        "great",
+        "nice",
+        "well"
+      ],
+      "description": "Flat right hand moves forward from the chin with a smile.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chin",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "BAD",
+      "label": "Bad",
+      "category": "basic",
+      "aliases": [
+        "bad",
+        "poor",
+        "awful"
+      ],
+      "description": "Flat right hand turns and moves outward from the chin with a frown.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chin",
+            "movement": "away",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "frown",
+        "head": "shake",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "HAPPY",
+      "label": "Happy",
+      "category": "basic",
+      "aliases": [
+        "happy",
+        "glad",
+        "cheerful"
+      ],
+      "description": "Both flat hands circle upward at chest height with a broad smile.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "circle",
+            "repetitions": 2,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "circle",
+            "repetitions": 2,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "SAD",
+      "label": "Sad",
+      "category": "basic",
+      "aliases": [
+        "sad",
+        "unhappy",
+        "upset"
+      ],
+      "description": "Both open hands move downward in front of the face with a sad expression.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "down",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "down",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "sad",
+        "head": "forward",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "WATER",
+      "label": "Water",
+      "category": "basic",
+      "aliases": [
+        "water",
+        "drink",
+        "drinking"
+      ],
+      "description": "Cupped right hand moves down near the mouth.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "cup",
+            "location": "mouth",
+            "movement": "down",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "FOOD",
+      "label": "Food",
+      "category": "basic",
+      "aliases": [
+        "food",
+        "eat",
+        "eating",
+        "meal"
+      ],
+      "description": "Pinched right hand moves toward the mouth twice.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "pinch",
+            "location": "mouth",
+            "movement": "down",
+            "repetitions": 2,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "HOME",
+      "label": "Home",
+      "category": "basic",
+      "aliases": [
+        "home",
+        "house"
+      ],
+      "description": "Both open hands move toward the chest, representing shelter.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "approach",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "open",
+            "location": "chest",
+            "movement": "approach",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "COME",
+      "label": "Come",
+      "category": "basic",
+      "aliases": [
+        "come",
+        "comes",
+        "coming"
+      ],
+      "description": "Open right hand at chest height moves toward the signer.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "open",
+            "location": "forward",
+            "movement": "approach",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "GO",
+      "label": "Go",
+      "category": "basic",
+      "aliases": [
+        "go",
+        "goes",
+        "going",
+        "went"
+      ],
+      "description": "Index finger points forward and moves away from the body.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "forward",
+            "movement": "away",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "WAIT",
+      "label": "Wait",
+      "category": "basic",
+      "aliases": [
+        "wait",
+        "waits",
+        "waiting"
+      ],
+      "description": "Both open hands hold forward at chest height with a patient expression.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "open",
+            "location": "forward",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "open",
+            "location": "forward",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "focus",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "SIT",
+      "label": "Sit",
+      "category": "basic",
+      "aliases": [
+        "sit",
+        "sits",
+        "sitting",
+        "seat"
+      ],
+      "description": "Flat right hand moves down onto the open left palm.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "left_side",
+            "movement": "down",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "up"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "STAND",
+      "label": "Stand",
+      "category": "basic",
+      "aliases": [
+        "stand",
+        "stands",
+        "standing"
+      ],
+      "description": "Flat right hand rises from the open left palm.",
+      "animation": {
+        "duration_ms": 900,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "left_side",
+            "movement": "up",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "up"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "OPEN",
+      "label": "Open",
+      "category": "basic",
+      "aliases": [
+        "open",
+        "opens",
+        "opened"
+      ],
+      "description": "Both flat hands turn and open outward.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "open_close",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "open_close",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "CLOSE",
+      "label": "Close",
+      "category": "basic",
+      "aliases": [
+        "close",
+        "closes",
+        "closed",
+        "shut"
+      ],
+      "description": "Both flat hands move toward each other and meet.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "approach",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "approach",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "WANT",
+      "label": "Want",
+      "category": "basic",
+      "aliases": [
+        "want",
+        "wants",
+        "wanted"
+      ],
+      "description": "Both clawed hands pull toward the chest.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "claw",
+            "location": "forward",
+            "movement": "approach",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "claw",
+            "location": "forward",
+            "movement": "approach",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "focus",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "LOVE",
+      "label": "Love",
+      "category": "basic",
+      "aliases": [
+        "love",
+        "loves",
+        "loved"
+      ],
+      "description": "Both flat hands cross over the chest in an embrace.",
+      "animation": {
+        "duration_ms": 1200,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "approach",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "approach",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "smile",
+        "head": "nod",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "WHAT",
+      "label": "What",
+      "category": "question",
+      "aliases": [
+        "what"
+      ],
+      "description": "Both open hands move forward with raised eyebrows and a questioning head tilt.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "open",
+            "location": "forward",
+            "movement": "shake",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "open",
+            "location": "forward",
+            "movement": "shake",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "question",
+        "head": "tilt_left",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "WHY",
+      "label": "Why",
+      "category": "question",
+      "aliases": [
+        "why"
+      ],
+      "description": "Index finger moves forward from the forehead with a questioning expression.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "forehead",
+            "movement": "forward",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "question",
+        "head": "tilt_left",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "WHO",
+      "label": "Who",
+      "category": "question",
+      "aliases": [
+        "who",
+        "whom"
+      ],
+      "description": "Index finger circles forward with a questioning expression.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "forward",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "question",
+        "head": "tilt_left",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "WHERE",
+      "label": "Where",
+      "category": "question",
+      "aliases": [
+        "where"
+      ],
+      "description": "Index finger shakes forward at chest height with a questioning expression.",
+      "animation": {
+        "duration_ms": 1000,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "forward",
+            "movement": "shake",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "question",
+        "head": "tilt_left",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "WHEN",
+      "label": "When",
+      "category": "question",
+      "aliases": [
+        "when"
+      ],
+      "description": "Index finger circles over the open left palm with a questioning expression.",
+      "animation": {
+        "duration_ms": 1100,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "point",
+            "location": "left_side",
+            "movement": "circle",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "flat",
+            "location": "chest",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "up"
+          }
+        ],
+        "face": "question",
+        "head": "tilt_left",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "HOW",
+      "label": "How",
+      "category": "question",
+      "aliases": [
+        "how"
+      ],
+      "description": "Both fists meet at the knuckles and open outward with a questioning expression.",
+      "animation": {
+        "duration_ms": 1100,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "fist",
+            "location": "chest",
+            "movement": "open_close",
+            "repetitions": 1,
+            "palm": "forward"
+          },
+          {
+            "hand": "left",
+            "handshape": "fist",
+            "location": "chest",
+            "movement": "open_close",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "question",
+        "head": "tilt_left",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "ONE",
+      "label": "One",
+      "category": "number",
+      "aliases": [
+        "one",
+        "1"
+      ],
+      "description": "Right index finger held up at chest height.",
+      "animation": {
+        "duration_ms": 700,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "one",
+            "location": "chest",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "TWO",
+      "label": "Two",
+      "category": "number",
+      "aliases": [
+        "two",
+        "2"
+      ],
+      "description": "Right index and middle fingers held up at chest height.",
+      "animation": {
+        "duration_ms": 700,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "two",
+            "location": "chest",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "THREE",
+      "label": "Three",
+      "category": "number",
+      "aliases": [
+        "three",
+        "3"
+      ],
+      "description": "Right thumb, index and middle fingers extended at chest height.",
+      "animation": {
+        "duration_ms": 700,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "three",
+            "location": "chest",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "FOUR",
+      "label": "Four",
+      "category": "number",
+      "aliases": [
+        "four",
+        "4"
+      ],
+      "description": "Four fingers extended with the thumb folded at chest height.",
+      "animation": {
+        "duration_ms": 700,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "four",
+            "location": "chest",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "gloss": "FIVE",
+      "label": "Five",
+      "category": "number",
+      "aliases": [
+        "five",
+        "5"
+      ],
+      "description": "Open right hand with all five fingers extended at chest height.",
+      "animation": {
+        "duration_ms": 700,
+        "hands": [
+          {
+            "hand": "right",
+            "handshape": "five",
+            "location": "chest",
+            "movement": "static",
+            "repetitions": 1,
+            "palm": "forward"
+          }
+        ],
+        "face": "neutral",
+        "head": "neutral",
+        "body": "neutral",
+        "notes": null
+      },
+      "verified": false,
+      "source": "SignBridge experimental ISL mapping (handshape-location-movement description; NOT interpreter-reviewed)",
+      "review_status": "experimental",
+      "reviewed_by": null,
+      "reviewed_at": null
+    }
+  ]
+}
