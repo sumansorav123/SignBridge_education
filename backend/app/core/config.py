@@ -68,6 +68,16 @@ class Settings(BaseSettings):
     def _normalise_env(cls, value: str) -> str:
         return value.strip().lower()
 
+    @field_validator("database_url", mode="before")
+    @classmethod
+    def _normalise_database_url(cls, value: str) -> str:
+        if not isinstance(value, str):
+            return value
+        scheme, separator, remainder = value.strip().partition("://")
+        if separator and scheme.lower() in {"postgres", "postgresql"}:
+            return f"postgresql+psycopg://{remainder}"
+        return value
+
     @property
     def is_production(self) -> bool:
         return self.environment in {"production", "prod"}
@@ -115,6 +125,11 @@ def get_settings() -> Settings:
     if settings.is_production and settings.seed_demo_data:
         raise RuntimeError(
             "SEED_DEMO_DATA must be false in production: it creates demo accounts with a public password."
+        )
+    if settings.is_production and settings.auto_create_tables:
+        raise RuntimeError(
+            "AUTO_CREATE_TABLES must be false in production. "
+            "Apply a reviewed database migration plan explicitly."
         )
     logging.getLogger(__name__).setLevel(settings.log_level.upper())
     return settings

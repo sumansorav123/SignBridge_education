@@ -77,6 +77,13 @@ def _origin_allowed(websocket: WebSocket) -> bool:
     return "*" in allowed or origin in allowed
 
 
+async def _close_websocket(websocket: WebSocket, *, code: int, reason: str) -> None:
+    try:
+        await websocket.close(code=code, reason=reason)
+    except WebSocketDisconnect:
+        return
+
+
 def _iso(value: datetime | None) -> str | None:
     aware = ensure_utc(value)
     return aware.isoformat() if aware else None
@@ -701,7 +708,9 @@ async def classroom_socket(websocket: WebSocket, classroom_id: int) -> None:
     # token in the URL. No classroom data is sent until authentication succeeds.
     await websocket.accept()
     if not _origin_allowed(websocket):
-        await websocket.close(code=4403, reason="WebSocket origin is not allowed")
+        await _close_websocket(
+            websocket, code=4403, reason="WebSocket origin is not allowed"
+        )
         return
 
     # Tokens in the URL are rejected on purpose: they leak into proxy logs and
@@ -713,10 +722,16 @@ async def classroom_socket(websocket: WebSocket, classroom_id: int) -> None:
                 websocket.receive_json(), timeout=WS_AUTH_TIMEOUT_SECONDS
             )
         except asyncio.TimeoutError:
-            await websocket.close(code=4401, reason="Authentication timed out")
+            await _close_websocket(
+                websocket, code=4401, reason="Authentication timed out"
+            )
             return
-        except (ValueError, WebSocketDisconnect):
-            await websocket.close(code=4401, reason="Authentication required")
+        except WebSocketDisconnect:
+            return
+        except ValueError:
+            await _close_websocket(
+                websocket, code=4401, reason="Authentication required"
+            )
             return
         if (
             not isinstance(first, dict)
@@ -724,18 +739,28 @@ async def classroom_socket(websocket: WebSocket, classroom_id: int) -> None:
             or not isinstance(first.get("token"), str)
             or not first["token"].strip()
         ):
-            await websocket.close(code=4401, reason="Authentication required")
+            await _close_websocket(
+                websocket, code=4401, reason="Authentication required"
+            )
             return
         token = first["token"].strip()
 
     with SessionLocal() as db:
         user = authenticate_ws_token(db, token)
         if user is None:
-            await websocket.close(code=4401, reason="Authentication required or session expired")
+            await _close_websocket(
+                websocket,
+                code=4401,
+                reason="Authentication required or session expired",
+            )
             return
         access = classroom_access(classroom_id, user.id, user.role)
         if access is None:
-            await websocket.close(code=4403, reason="You do not have access to this classroom")
+            await _close_websocket(
+                websocket,
+                code=4403,
+                reason="You do not have access to this classroom",
+            )
             return
         user_id = user.id
         role = user.role
@@ -864,7 +889,9 @@ async def classroom_socket(websocket: WebSocket, classroom_id: int) -> None:
 async def notifications_socket(websocket: WebSocket) -> None:
     await websocket.accept()
     if not _origin_allowed(websocket):
-        await websocket.close(code=4403, reason="WebSocket origin is not allowed")
+        await _close_websocket(
+            websocket, code=4403, reason="WebSocket origin is not allowed"
+        )
         return
 
     token = _header_token(websocket)
@@ -874,10 +901,16 @@ async def notifications_socket(websocket: WebSocket) -> None:
                 websocket.receive_json(), timeout=NOTIFICATION_AUTH_TIMEOUT_SECONDS
             )
         except asyncio.TimeoutError:
-            await websocket.close(code=4401, reason="Authentication timed out")
+            await _close_websocket(
+                websocket, code=4401, reason="Authentication timed out"
+            )
             return
-        except (ValueError, WebSocketDisconnect):
-            await websocket.close(code=4401, reason="Authentication required")
+        except WebSocketDisconnect:
+            return
+        except ValueError:
+            await _close_websocket(
+                websocket, code=4401, reason="Authentication required"
+            )
             return
         if (
             not isinstance(first, dict)
@@ -885,14 +918,20 @@ async def notifications_socket(websocket: WebSocket) -> None:
             or not isinstance(first.get("token"), str)
             or not first["token"].strip()
         ):
-            await websocket.close(code=4401, reason="Authentication required")
+            await _close_websocket(
+                websocket, code=4401, reason="Authentication required"
+            )
             return
         token = first["token"].strip()
 
     with SessionLocal() as db:
         user = authenticate_ws_token(db, token)
         if user is None:
-            await websocket.close(code=4401, reason="Authentication required or session expired")
+            await _close_websocket(
+                websocket,
+                code=4401,
+                reason="Authentication required or session expired",
+            )
             return
         user_id = user.id
 

@@ -839,3 +839,11 @@ def test_websocket_rejects_disallowed_origin(client: TestClient, teacher: dict) 
             socket.send_json({"type": "auth", "token": teacher["access_token"]})
             socket.receive_json()
     assert excinfo.value.code == 4403
+
+
+@pytest.mark.parametrize("path", ["/ws/classroom/1", "/ws/notifications"])
+def test_websocket_client_disconnect_before_auth_is_clean(
+    client: TestClient, path: str
+) -> None:
+    with client.websocket_connect(path) as socket:
+        socket.close()

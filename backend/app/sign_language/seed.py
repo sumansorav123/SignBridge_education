@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import logging
 
-from app.database.base import Base
 from app.database.session import SessionLocal, engine
 
 logger = logging.getLogger(__name__)
@@ -25,7 +24,6 @@ def seed_sign_language_animations() -> None:
         logger.warning("No sign-language catalogs found; skipping seed")
         return
 
-    Base.metadata.create_all(bind=engine)
     db = SessionLocal()
     try:
         created = 0

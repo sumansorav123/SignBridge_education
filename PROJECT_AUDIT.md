@@ -1,8 +1,9 @@
 # SignBridge — Full-Stack Project Audit
 
 **Audit date:** 2026-11-02  
-**Commit inspected:** `7f83293` (`main`)  
-**Scope:** React 19/Vite 6 frontend, FastAPI/SQLAlchemy 2 backend, SQLite/MySQL persistence,
+**Commit inspected:** `d5c7e4f` (`main`, with uncommitted work in the working tree)
+**Scope:** React 19/Vite 6 frontend, FastAPI/SQLAlchemy 2 backend, SQLite/MySQL persistence and
+PostgreSQL driver/URL support,
 WebSocket/WebRTC real-time paths, file uploads, authentication/authorization, tests, build, and
 production-readiness.
 
@@ -18,7 +19,7 @@ production-readiness.
 |---|---|---|
 | Frontend | React 19, Vite 6, Tailwind 3, React Router 7, Three.js, MediaPipe | `frontend/src/{api,components,context,hooks,lib,pages}` |
 | Backend | FastAPI, SQLAlchemy 2, Pydantic 2, PyJWT, bcrypt, Alembic | `backend/app/{api,core,database,models,schemas,services,sign_language,speech,translation,websocket}` |
-| Data | SQLite (dev), MySQL (prod), on-disk recordings/materials | `backend/alembic/versions`, `backend/app/services/storage.py` |
+| Data | SQLite (dev/tests), MySQL, PostgreSQL driver/URL support (live integration unverified), on-disk recordings/materials | `backend/alembic/versions`, `backend/app/services/storage.py` |
 | Tests | pytest + FastAPI TestClient; Node `node:test` | `backend/tests`, `frontend/src/**/__tests__` |
 | Docs | Historical phase docs plus this audit set | `docs/`, repository root |
 
@@ -36,16 +37,18 @@ hot lookup paths. Three Alembic revisions exist (initial schema, recording offse
 
 | Check | Command | Result |
 |---|---|---|
-| Backend regression suite | `cd backend && ..\.venv\Scripts\python.exe -m pytest -q` | **49 passed**, 1 third-party deprecation warning |
+| Backend regression suite | `cd backend && ..\.venv\Scripts\python.exe -m pytest -q` | **73 passed**, 1 warning in pytest summary |
 | Frontend unit tests | `cd frontend && npm test` | **31 passed**, 0 failed |
 | Frontend production build | `cd frontend && npm run build` | **exit 0**, 2,293 modules transformed |
 | Frontend lockfile | `git ls-files frontend/package-lock.json` | present/tracked; `npm ci` viable |
 
-The 49 backend tests cover authentication, classroom creation/join approval, teacher/student access
-control, WebSocket first-message authentication and membership denial, recording authorization,
-translation fallback, ISL lexicon safeguards, and the sign-response contract fixed in this audit.
-The 31 frontend tests are pure-logic/unit tests (API contract helpers, ICE config, ISL pose/timeline,
-recording capture, reconnect/backoff, WebSocket policy) — **not** React DOM rendering.
+The 73 backend tests cover authentication, classroom creation/join approval, teacher/student access
+control, WebSocket first-message authentication, membership denial, media-state field compatibility,
+recording authorization, translation fallback, ISL lexicon safeguards, the sign-response contract,
+material association/authorization, runtime API workflows, production configuration, and the
+`student_id`/`classroom_id`/`teacher_id`/`material_id` relationship contract. The 31 frontend tests are
+pure-logic/unit tests (API contract helpers, ICE config, ISL pose/timeline, recording capture,
+reconnect/backoff, WebSocket policy) — **not** React DOM rendering.
 
 ---
 
@@ -83,6 +86,26 @@ recording capture, reconnect/backoff, WebSocket policy) — **not** React DOM re
   breakage risk.
 - **Fix:** changed to `minutes_attended=minutes_attended`; added a direct serializer regression test.
 
+### 3.4 Sign-language seeder bypassed the production schema-creation guard
+
+- **Evidence:** `seed_sign_language_animations()` called `Base.metadata.create_all()` independently
+  of the explicit startup schema initialization controlled by `AUTO_CREATE_TABLES`.
+- **Impact:** production startup could create missing ORM tables even with
+  `AUTO_CREATE_TABLES=false`, bypassing the production safety guard.
+- **Fix:** removed the seeder's `create_all()` call. Schema creation is now limited to the explicit
+  database initialization path; production continues to require reviewed/manual migrations.
+- **Regression coverage:** `backend/tests/test_production_config.py`.
+
+### 3.5 Expected WebSocket disconnect before authentication caused an ASGI exception
+
+- **Evidence:** the isolated browser closed classroom/notification sockets during route changes
+  before sending the first auth message; the server caught `WebSocketDisconnect` but then tried to
+  send a close frame to the already-disconnected peer.
+- **Impact:** normal client lifecycle events produced noisy server exception logs.
+- **Fix:** return directly on a disconnect during first-message authentication and tolerate a
+  disconnect while sending an intentional close frame.
+- **Regression coverage:** two parametrized cases in `backend/tests/test_websocket.py`.
+
 ---
 
 ## 4. Area-by-area assessment
@@ -105,10 +128,15 @@ recording capture, reconnect/backoff, WebSocket policy) — **not** React DOM re
 - WebSocket classroom access re-checks ownership/enrollment after first-message authentication; URL
   token authentication is rejected. Origin checks apply when an `Origin` header is present.
 
-### 4.3 Database and migrations — VERIFIED (schema/tests), BLOCKED (existing production DB)
+### 4.3 Database and migrations — VERIFIED (SQLite), PARTIAL (PostgreSQL), BLOCKED (existing production DB)
 
 - New databases can be built from migrations (`backend/alembic/versions`). Tests use a disposable
   SQLite database.
+- PostgreSQL psycopg driver/URL support is implemented, PostgreSQL URL normalization and dialect
+  loading have regression tests, and all Alembic revisions compile to PostgreSQL SQL in offline
+  mode. No PostgreSQL server was available; live connectivity, DDL execution, data round-trips,
+  constraints, and application workflows against PostgreSQL remain **unverified**. No database
+  migration or URL switch was performed.
 - The configured local/unversioned database must **not** be blindly upgraded or stamped. The initial
   migration tries to create tables that may already exist. Required path: verified backup → isolated
   clone → schema diff → forward-only migration or validated baseline stamp → restore test.
@@ -160,25 +188,54 @@ recording capture, reconnect/backoff, WebSocket policy) — **not** React DOM re
 - Three.js avatar rendering, MediaPipe hand tracking (detection only, not sign recognition), and
   qualified ISL correctness are **NOT RUN**.
 
-### 4.9 Uploads and file serving — VERIFIED (code + backend tests)
+### 4.9 Uploads and file serving — VERIFIED (code + backend tests); browser save PARTIAL
 
 - Extension allow-lists and streaming size limits (`MAX_MATERIAL_MB`, `MAX_RECORDING_MB`).
 - Storage keys are server-generated UUIDs; `resolve_storage_key()` blocks path traversal.
 - Download MIME type is derived from the validated extension via a safe mapping, not the
   browser-supplied `Content-Type`; downloads use `Content-Disposition` and private cache headers.
+- Automated regressions verify teacher-owned and enrolled-student download contents/headers,
+  denied access for unenrolled students and other teachers, invalid material IDs, missing files,
+  and complete 2 MiB+ response contents. The isolated browser request also returned HTTP 200 with
+  the expected 45-byte fixture and headers; frontend Blob creation and anchor click were observed.
+  The browser did not emit the awaited download event, so the final saved file remains
+  **unverified**; no API/auth/path/streaming defect was confirmed.
 - No magic-byte/antivirus scanning is implemented. Treat uploaded files as untrusted and add malware
   scanning before accepting arbitrary public uploads.
 
-### 4.10 Deployment readiness — NOT CONFIGURED
+### 4.10 Deployment readiness — BLOCKED (live service not production-configured)
 
-- No hosting configuration exists for Vercel/Render or any other target; no production database,
-  object storage, TURN service, or secrets are configured.
-- Frontend build output is static and deployable; backend supports MySQL and a configurable
-  `CORS_ORIGINS`.
+- No checked-in hosting configuration exists (`render.yaml`, `vercel.json`); the external Render
+  dashboard and Vercel project settings are not accessible in this workspace.
+- Read-only probes to the live Render API on 2026-11-02 returned HTTP 200 from `/api/health` and
+  `/health`, with `environment=development` and `database.dialect=sqlite`. `/` returned 404, which
+  is expected because the FastAPI app defines no root route; the previously observed 503 was not
+  reproduced. This is a live deployment, but **not a verified production configuration**. The
+  health response cannot confirm disk persistence, demo seeding, or the effective environment
+  variables.
+- Frontend build output is static and deployable; backend supports MySQL and PostgreSQL driver/URL
+  configuration, plus configurable `CORS_ORIGINS`. PostgreSQL integration remains unverified.
 - Recordings/materials are local-disk files. Serverless or ephemeral filesystems will lose them;
   production needs a persistent volume or object storage adapter.
+- The project declares PyMySQL and psycopg; PostgreSQL URL normalization and offline Alembic SQL
+  compilation were verified. No live PostgreSQL server was available; PostgreSQL is not yet a
+  verified deployment target.
+- Production startup now rejects `AUTO_CREATE_TABLES=true`. This does not migrate a schema; apply an
+  explicitly reviewed migration plan before pointing production at its database.
 - `VITE_*` values are public. Static TURN credentials are test-only; production should mint
   time-limited coturn credentials server-side (not implemented).
+
+### Isolated browser workflow — PARTIAL
+
+- Teacher/student registration and login, classroom creation, join request, teacher approval,
+  student classroom entry, classroom materials listing, and material upload succeeded against a
+  disposable local SQLite database and temporary storage.
+- The material upload returned HTTP 201 and the stored test bytes matched the uploaded fixture.
+- The browser download API response (HTTP 200, expected headers and fixture bytes) and frontend
+  Blob/anchor initiation were observed; the automation did not emit a download event. The final
+  browser-saved file is **not verified**.
+- Transient early WebSocket disconnects were reproduced and fixed in this phase. No camera,
+  microphone, WebRTC media, TURN, physical-device, or production workflow was tested.
 
 ---
 
@@ -190,7 +247,7 @@ recording capture, reconnect/backoff, WebSocket policy) — **not** React DOM re
 | Role and resource ownership checks | Verified in tests |
 | WebSocket first-message auth + origin check | Verified in tests |
 | Upload extension/size/traversal controls | Verified in code and tests |
-| Production secret and demo-seed startup guards | Verified in code |
+| Production secret, demo-seed, and automatic-table-creation guards | Verified in code and config tests |
 | Security headers (`nosniff`, `DENY`, referrer, permissions policy) | Present in middleware |
 | Rate limiting | Login/register only, process-local; no shared limiter |
 | Upload content sniffing / antivirus | Not implemented |

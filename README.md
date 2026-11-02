@@ -5,8 +5,8 @@ Inclusive live-learning platform: one teacher, hearing and deaf students in the 
 **Status: functional prototype / pre-production.** Automated backend and frontend tests pass and the production
 frontend build succeeds, but physical two-device WebRTC/media, live speech recognition, real translation
 providers, TURN relay traversal, and qualified ISL review have **not** been verified. See
-[`docs/FEATURE_STATUS.md`](docs/FEATURE_STATUS.md), [`TEST_REPORT.md`](TEST_REPORT.md), and
-[`BUG_REPORT.md`](BUG_REPORT.md) for what is actually tested.
+[`docs/FEATURE_STATUS.md`](docs/FEATURE_STATUS.md), [`TEST_REPORT.md`](TEST_REPORT.md),
+[`BUG_REPORT.md`](BUG_REPORT.md), and [`ID_AUDIT_REPORT.md`](ID_AUDIT_REPORT.md) for what is actually tested.
 
 ## Features (see FEATURE_STATUS for verification level)
 
@@ -21,7 +21,8 @@ Hearing / Deaf mode · **experimental** procedural 3D ISL avatar (Three.js) · M
 ## Stack
 
 React 19, Vite 6, Tailwind, Three.js, MediaPipe Tasks Vision · FastAPI, SQLAlchemy 2, Alembic, PyJWT, bcrypt ·
-SQLite (dev) / MySQL (prod) · WebRTC + WebSocket.
+SQLite (development/tests), MySQL, and PostgreSQL driver/URL support (PostgreSQL live integration
+unverified) · WebRTC + WebSocket.
 
 ## Layout
 
@@ -29,7 +30,7 @@ SQLite (dev) / MySQL (prod) · WebRTC + WebSocket.
 backend/app/{api,core,database,models,schemas,services,sign_language,speech,translation,websocket}
 backend/alembic   backend/tests
 frontend/src/{api,components,context,hooks,lib,pages}   frontend/src/lib/__tests__
-docs/   PROJECT_AUDIT.md   PROJECT_PROGRESS.md   BUG_REPORT.md   TEST_REPORT.md
+docs/   PROJECT_AUDIT.md   PROJECT_PROGRESS.md   BUG_REPORT.md   TEST_REPORT.md   ID_AUDIT_REPORT.md
         DEPLOYMENT_GUIDE.md   HANDOVER_FOR_NEXT_AGENT.md
 ```
 
@@ -60,7 +61,14 @@ cd frontend && npm test          # pure-logic unit tests (Node 22+)
 cd frontend && npm run build
 ```
 
-Latest verified run (2026-11-02): backend **49 passed**; frontend **31 passed**; production build **exit 0**.
+Latest verified run (2026-11-02): backend **73 passed**; frontend **31 passed**; Python compilation
+passed; production build **exit 0**. Material download authorization, response headers, contents,
+missing-file behavior, and large-file bodies are covered by backend tests. The isolated browser run
+also verified HTTP 200, expected headers/body, and Blob/anchor initiation, but the browser download
+event did not fire, so the saved file itself remains unverified. PostgreSQL URL/driver and offline
+Alembic compilation are verified; live PostgreSQL integration is not. The live Render health endpoint
+currently reports development + SQLite; see [`DEPLOYMENT_GUIDE.md`](DEPLOYMENT_GUIDE.md) before using
+it with real student data.
 These are automated layers only — see [`TEST_REPORT.md`](TEST_REPORT.md).
 
 ## Common errors
