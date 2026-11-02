@@ -295,3 +295,24 @@ without explicit approval and a rehearsed migration.
 
 These are operator steps only. No database switch, migration, Render setting change, Vercel
 deployment, or data operation was performed during this audit.
+
+
+## Safe adoption of an existing unversioned SQLite database
+
+If an existing SQLite file has application tables but `alembic_version` is empty, do not run
+`alembic upgrade head` against it: the initial migration may attempt to create tables that already
+exist. The project includes `backend/scripts/adopt_existing_sqlite_schema.py` for a guarded
+adoption path.
+
+1. Stop the API so no writes occur, and make a separate copy of the database and `STORAGE_ROOT`.
+2. From `backend`, run `python scripts/adopt_existing_sqlite_schema.py` (check-only).
+3. Continue only if it reports an exact schema match, SQLite integrity `ok`, and no foreign-key
+   violations. Any difference is a hard stop; do not stamp the database.
+4. Review the printed database path. Run `python scripts/adopt_existing_sqlite_schema.py --apply`.
+   It creates and verifies a timestamped SQLite backup, then records Alembic `head` without
+   changing application tables or rows.
+5. Restart the app and verify `/api/health`, login, classrooms, recordings/materials, and row counts.
+
+This helper only supports SQLite. It intentionally does not stamp or migrate MySQL/PostgreSQL.
+Never use schema adoption to hide real schema drift. For drift, build a reviewed forward migration
+and rehearse it against a cloned database first.

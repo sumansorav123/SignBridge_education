@@ -53,6 +53,32 @@ cd frontend && cp .env.example .env && npm ci && npm run dev    # http://localho
 Environment variables: `.env.example` (backend) and `frontend/.env.example` (API URL, STUN/TURN, MediaPipe
 URLs). Never commit real secrets or put production TURN credentials in `VITE_*` variables.
 
+## Repair an existing unversioned SQLite database safely
+
+Some older local databases may already contain the current tables but have an empty or missing
+`alembic_version` record. Do **not** run `alembic upgrade head` against such a database blindly:
+the initial migration can fail because its tables already exist.
+
+From `backend`, run a read-only schema check first:
+
+```powershell
+python scripts/adopt_existing_sqlite_schema.py
+```
+
+The helper checks the current ORM/Alembic schema, SQLite integrity, and foreign keys. It refuses
+to adopt a database with schema differences. Only if the check reports no differences, review the
+database path and then run:
+
+```powershell
+python scripts/adopt_existing_sqlite_schema.py --apply
+```
+
+`--apply` makes a verified SQLite backup next to the database, then records Alembic `head`; it
+does not create, drop, or alter application tables or data. Keep the backup until the app and
+migration workflow are verified. The helper is SQLite-only and refuses MySQL/PostgreSQL URLs.
+For a schema mismatch, do not stamp or auto-repair; back up the database and create a reviewed
+forward migration for that exact schema.
+
 ## Tests
 
 ```bash
