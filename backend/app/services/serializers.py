@@ -92,7 +92,7 @@ def classroom_student_out(
         joined_at=enrollment.joined_at,
         last_seen_at=enrollment.last_seen_at,
         attended_lectures=attended_lectures,
-        lecture_minutes=minutes_attended,
+        minutes_attended=minutes_attended,
     )
 
 

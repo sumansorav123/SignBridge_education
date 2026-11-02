@@ -85,6 +85,8 @@ class SignGlossOut(BaseModel):
     animation: dict[str, Any] | None = None
     category: str | None = None
     source: str | None = None
+    verified: bool = False
+    review_status: str | None = None
 
 
 class SignConvertOut(BaseModel):
@@ -96,6 +98,7 @@ class SignConvertOut(BaseModel):
     rules_applied: list[str]
     phrase_matches: list[str]
     coverage: float
+    verified_coverage: float = 0.0
     has_fallback: bool
     fallback_message: str | None = None
     grammar_note: str | None = None

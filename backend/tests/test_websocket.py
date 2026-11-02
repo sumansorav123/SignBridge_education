@@ -805,6 +805,32 @@ def test_websocket_rejects_token_in_url(client: TestClient, teacher: dict) -> No
     assert excinfo.value.code == 4401
 
 
+def test_media_state_accepts_frontend_audio_video_enabled_fields(
+    client: TestClient, teacher: dict, deaf_student: dict
+) -> None:
+    """LiveClassroom sends audio_enabled/video_enabled; the hub must honor them."""
+    with _connect(client, 1, teacher["access_token"]) as teacher_socket:
+        assert teacher_socket.receive_json()["type"] == "ready"
+        with _connect(client, 1, deaf_student["access_token"]) as student_socket:
+            assert student_socket.receive_json()["type"] == "ready"
+
+            teacher_socket.send_json(
+                {"type": "media-state", "audio_enabled": True, "video_enabled": True}
+            )
+            enabled = _next_of_type(student_socket, "teacher-media")
+            assert enabled["microphone_enabled"] is True
+            assert enabled["camera_enabled"] is True
+            assert enabled["participant"]["audio_enabled"] is True
+            assert enabled["participant"]["video_enabled"] is True
+
+            teacher_socket.send_json(
+                {"type": "media-state", "audio_enabled": False, "video_enabled": True}
+            )
+            disabled = _next_of_type(student_socket, "teacher-media")
+            assert disabled["microphone_enabled"] is False
+            assert disabled["camera_enabled"] is True
+
+
 def test_websocket_rejects_disallowed_origin(client: TestClient, teacher: dict) -> None:
     with pytest.raises(WebSocketDisconnect) as excinfo:
         with client.websocket_connect(

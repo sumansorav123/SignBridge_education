@@ -1,94 +1,85 @@
 # SignBridge project progress
 
-**Current phase:** Phase 12 — physical classroom acceptance testing  
-**Current status:** Automated tests and same-machine live API/WebSocket workflow pass. Two-laptop, browser-driven, and actual media acceptance remain outstanding.  
-**Last verified:** 2026-11-01  
-**Detailed results:** [docs/TEST_REPORT.md](./docs/TEST_REPORT.md)  
-**Manual runbook:** [docs/REAL_WORLD_TEST_GUIDE.md](./docs/REAL_WORLD_TEST_GUIDE.md)
+**Current phase:** Phase 13 — full-stack audit, contract repair, and handover
+**Status:** Automated backend/frontend tests and production build pass. Browser/media/physical-device
+acceptance and production infrastructure remain outstanding.
+**Last verified:** 2026-11-02
+**Commit inspected:** `7f83293` on `main` (changes from this phase are uncommitted)
+**Detailed results:** [`TEST_REPORT.md`](TEST_REPORT.md) · [`BUG_REPORT.md`](BUG_REPORT.md) ·
+[`PROJECT_AUDIT.md`](PROJECT_AUDIT.md) · [`docs/REAL_WORLD_TEST_GUIDE.md`](docs/REAL_WORLD_TEST_GUIDE.md)
 
-## Latest verification
+## Current verification
 
 | Area | Status | Evidence / limitation |
 |---|---|---|
-| Backend regression suite | PASS | 43 passed, exit 0, including classroom approval, authorization, notifications, and transaction rollback. |
-| Frontend tests | PASS | 25 passed, exit 0; includes five recording-capture helper tests. Pure logic tests, not React DOM or browser media. |
-| Frontend production build | PASS (Phase 11) | `npm run build`, exit 0 in Phase 11; intentionally NOT RUN in Phase 12. |
-| Python compilation | PASS | `python -m compileall -q app tests`, exit 0. |
-| Local API startup | PASS | FastAPI used a unique temporary SQLite database/storage; `/api/health` returned 200 and DB status `ok`. |
-| Local frontend startup | PASS | Vite `/` returned HTTP 200. |
-| Standalone runtime plan | PASS (Phase 11), HTTP fallback | Three assertions passed: tests, build, and HTTP probe. Phase 12 plan was NOT RUN because it includes a production build and rebuilding was explicitly disallowed. |
-| Configured application DB | BLOCKED for migration | Existing unversioned schema was not changed; see migration safety in [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md). |
-| Browser approval journey | NOT RUN | Recorder child agent unavailable; HTTP probe only. |
-| Physical two-laptop classroom | NOT RUN | Owner must run the Windows LAN guide. |
-| Camera/microphone/remote media and TURN | NOT RUN | No physical devices or TURN test performed. |
-| Recording helper/source switching | PASS (unit tests) | Five unit tests cover stable output track, source updates, audio retention, aspect fit, error reporting, and cleanup. |
-| Actual recording/playback/A-V and caption synchronization | NOT RUN | No real MediaRecorder output was created or inspected. |
-| Accessibility UI, real translation, avatar rendering/qualified ISL review | NOT RUN | No browser/provider/device acceptance. All 100 ISL entries remain experimental. |
-| Cross-worker notifications | BLOCKED | Process-local hub; shared broker is not configured. |
-| Docker-based validation | BLOCKED | Docker command unavailable. |
+| Backend regression suite | **PASS** | `pytest -q`: **49 passed**, exit 0. Includes new sign-contract and serializer regressions. |
+| Frontend unit tests | **PASS** | `npm test`: **31 passed**, 0 failed. Pure logic, not React DOM. |
+| Frontend production build | **PASS** | `npm run build`: exit 0, 2,293 modules transformed. |
+| README/documentation integrity | **FIXED** | Removed unresolved merge-conflict markers and stale lockfile guidance. |
+| Sign-practice verification contract | **FIXED** | `verified`, `review_status`, and `verified_coverage` now survive API serialization. |
+| Classroom-student serializer | **FIXED** | `minutes_attended` kwarg corrected; regression test added. |
+| Browser auth/refresh journey | **NOT RUN** | Automated backend auth only; no browser session exercised. |
+| Camera/microphone/WebRTC media | **NOT RUN** | No physical device or secure-context test. |
+| Screen share / TURN relay | **NOT RUN / BLOCKED** | No TURN service or restricted network available. |
+| Recording capture/playback/A-V sync | **NOT RUN** | Helper unit tests only; no real `MediaRecorder` output inspected. |
+| Live speech recognition | **NOT RUN** | Requires supported browser, microphone, and live session. |
+| Real translation provider output | **NOT RUN** | Provider fallback/status tested; no credentials or provider accuracy test. |
+| ISL avatar / qualified review | **NOT RUN** | All 100 ISL entries remain experimental; zero interpreter-reviewed. |
+| Responsive dashboards/classrooms | **NOT RUN** | Only a previous landing-page responsive smoke test exists. |
+| Existing configured DB migration | **BLOCKED** | Unversioned DB; requires backup, clone, schema diff, and validated plan. |
+| Persistent production storage | **BLOCKED** | Recordings/materials currently use local disk; no volume/object storage configured. |
+| Cross-worker notifications | **BLOCKED** | Process-local hub; shared pub/sub not configured. |
+| Docker-based validation | **BLOCKED** | Docker unavailable in the audit environment. |
+| Production deployment | **NOT CONFIGURED** | No hosting, managed DB, domain, TLS, or secrets configured. |
 
-## Phase 12 validation
+## Changes made in Phase 13
 
-- Backend regression suite rerun: **PASS**, 43 passed.
-- Frontend tests rerun: **PASS**, 25 passed.
-- Production build: **NOT RUN** in Phase 12, as requested; the Phase 11 build result remains historical evidence only.
-- Local live approval/rejection workflow: **PASS** using a disposable SQLite database and same-machine HTTP/WebSocket clients through the server laptop's LAN-hosted Vite origin. Teacher notifications, persistence, approval/membership, rejection/no membership, pending/rejected socket denial (4403), approved connection (`ready`), and approved reconnect were observed.
-- API health and LAN-origin CORS preflight: **PASS**, HTTP 200; allowed origin was `http://192.168.205.101:5173`.
-- Physical second-laptop access, browser-driven UI, real camera/microphone/WebRTC media, screen share, recording playback/synchronization, captions, translation, and accessibility acceptance: **NOT RUN**.
-- The Wi-Fi profile was **Public**. No firewall profile or rule was changed. A local request to the server's own LAN address does not prove access from another laptop.
-- No migration or operation against the configured application database was performed. The Phase 12 disposable database/storage directory was removed after the services were stopped.
+1. Replaced the merge-conflicted `README.md` with accurate setup, test, and troubleshooting guidance.
+2. Fixed the sign-language response contract:
+   - `SignGlossOut` now exposes `verified` and `review_status`.
+   - `SignConvertOut` now exposes `verified_coverage`.
+   - `build_signs()` propagates `verified_coverage` for normal and unsupported-language payloads.
+3. Fixed `classroom_student_out()` to pass `minutes_attended` instead of the nonexistent
+   `lecture_minutes`.
+4. Added `backend/tests/test_sign_response_contract.py` (3 focused tests).
+5. Re-ran backend tests, frontend tests, and the production build.
+6. Produced the root audit/report/handover/deployment documentation set.
 
-See [docs/TEST_REPORT.md](./docs/TEST_REPORT.md) for evidence and
-[docs/REAL_WORLD_TEST_GUIDE.md](./docs/REAL_WORLD_TEST_GUIDE.md) for the
-owner-run two-laptop procedure.
+## Historical context (Phases 10–12)
 
-## Phase 11 work completed
+- Phase 10/11 hardened WebSocket authentication, upload handling, production startup guards, and
+  recording source switching. The configured local SQLite DB was deliberately left untouched.
+- Phase 12 verified a scripted single-process approval/rejection and classroom WebSocket flow on a
+  disposable SQLite database, plus same-machine LAN-origin health/CORS checks. It did **not** perform
+  a browser-driven or second-laptop test.
+- Documentation from those phases understates current counts (43 backend / 25 frontend). This file and
+  `TEST_REPORT.md` supersede those counts for the current commit.
 
-- Started FastAPI and Vite locally using an isolated temporary SQLite database
-  and storage directory. Confirmed API health and frontend HTTP readiness;
-  configured application data was not used.
-- Added `frontend/src/lib/recordingCapture.js`. The teacher recorder now uses a
-  stable canvas video track that draws the current local preview and combines
-  it with microphone audio. Camera/screen-share changes therefore do not
-  mutate the MediaRecorder input track set. Stopping teacher media also stops
-  and saves an active recording instead of leaving a canvas-only recording.
-- Added five unit tests for stable track identity across source changes,
-  retained audio, portrait aspect fitting, unsupported browser capture, and
-  generated-track/frame cleanup.
-- Added a standalone frontend runtime eval plan. The test/build/HTTP assertions
-  passed; a Playwright recording was not run because the required recorder
-  child was unavailable. The HTTP probe does not establish browser behavior.
-- Expanded the Windows two-laptop instructions and feature checklist. No
-  physical device testing is claimed.
+## Next actions (in priority order)
 
-## Safety and product constraints
+1. **Browser auth and approval journey:** sign in as teacher/student, create a classroom, request to
+   join, approve/reject, refresh the page, and confirm session persistence and role routing.
+2. **Media acceptance on two devices:** use trusted HTTPS/WSS, verify camera/mic delivery, remote
+   playback, screen share, 3+ participants, reconnect, and resource cleanup.
+3. **TURN:** configure a test coturn service and confirm a selected `relay` candidate pair with direct
+   paths blocked.
+4. **Recording:** record a real camera→screen-share transition, play it back, and compare audio,
+   video, and caption timing.
+5. **Captions/translation/accessibility:** test live speech, at least one real provider per language
+   family, Hearing/Deaf layouts, reduced motion, avatar rendering, and a screen reader.
+6. **ISL review:** obtain qualified interpreter evidence before changing any verification metadata.
+7. **Database:** back up, clone, diff, and validate a schema-specific migration plan before touching
+   any configured or production database.
+8. **Production platform:** choose Vercel/Render/managed MySQL/persistent storage (see
+   [`DEPLOYMENT_GUIDE.md`](DEPLOYMENT_GUIDE.md)), add shared notification pub/sub, and configure
+   monitoring/backups.
+9. **Deployment:** only after the above, with explicit owner approval. Do not push or deploy
+   automatically.
 
-- Do not delete, reset, stamp, or upgrade the configured database. The Phase 11
-  app startup used a unique `%TEMP%` database; no Alembic operation ran.
-- Never expose production TURN credentials in `VITE_*` variables.
-- Use a trusted HTTPS/WSS origin for camera, microphone, and screen-capture
-  trials from a second laptop; LAN HTTP is only suitable for basic API/UI checks.
-- Do not describe ISL animations as interpreter-verified; no qualified review
-  evidence exists.
-- Do not claim browser, real media, or physical-device checks that remain
-  NOT RUN.
+## Safety constraints
 
-## Next actions
-
-1. Follow [docs/REAL_WORLD_TEST_GUIDE.md](./docs/REAL_WORLD_TEST_GUIDE.md) with
-   a disposable DB, two laptops, and test-only accounts.
-2. Verify teacher/student authentication, classroom creation, request,
-   approval/rejection, refresh persistence, and authenticated WebSocket access.
-3. Use trusted HTTPS/WSS to test camera/microphone delivery, screen sharing,
-   multiple students, reconnects, and cleanup.
-4. Record a real camera-to-screen-share MediaRecorder transition; inspect
-   playback and compare audio/caption timing.
-5. Test captions, real translation providers, Hearing/Deaf mode, reduced
-   motion, avatar rendering, attendance, and materials.
-6. Configure TURN securely and confirm a selected `relay` candidate on a
-   restricted network.
-7. Conduct qualified ISL review; retain experimental status until documented.
-8. Prepare a schema-specific migration plan only after a production backup,
-   disposable clone, and schema comparison; never blindly stamp or upgrade.
-9. Add shared notification pub/sub and cross-worker integration tests before
-   multi-worker deployment.
+- Do not delete, reset, stamp, or blindly upgrade a configured database. Use disposable data only.
+- Do not commit `.env`, secrets, production TURN credentials, or real user data.
+- Do not describe ISL animations as interpreter-verified.
+- Do not claim browser, media, or physical-device checks that were not performed.
+- Do not push to GitHub or deploy without explicit user approval.

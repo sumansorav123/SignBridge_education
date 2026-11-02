@@ -242,15 +242,19 @@ async def _handle_media_state(
 ) -> None:
     """Record camera/microphone state and notify the people who can see it.
 
-    Both the original ``audio``/``video`` field names and the explicit
-    ``microphone_enabled``/``camera_enabled`` aliases are accepted so older and
-    newer frontends remain compatible.
+    Both the modern ``audio_enabled``/``video_enabled`` field names and the
+    older ``audio``/``video`` and ``microphone_enabled``/``camera_enabled``
+    aliases are accepted so existing clients remain compatible.
     """
-    if "audio" in payload:
+    if "audio_enabled" in payload:
+        participant.audio_enabled = bool(payload.get("audio_enabled"))
+    elif "audio" in payload:
         participant.audio_enabled = bool(payload.get("audio"))
     elif "microphone_enabled" in payload:
         participant.audio_enabled = bool(payload.get("microphone_enabled"))
-    if "video" in payload:
+    if "video_enabled" in payload:
+        participant.video_enabled = bool(payload.get("video_enabled"))
+    elif "video" in payload:
         participant.video_enabled = bool(payload.get("video"))
     elif "camera_enabled" in payload:
         participant.video_enabled = bool(payload.get("camera_enabled"))
