@@ -87,6 +87,80 @@ test('hand starts and ends at rest and reaches the lexicon location mid-sign', (
   assert.ok(mid.raise > 0.99)
 })
 
+// Mirrors the shape of backend live-caption `signs.glosses` after the
+// include_animation fix: catalogued glosses carry the full animation spec.
+const LIVE_SENTENCES = {
+  'Hello, how are you?': ['HELLO', 'HOW-ARE-YOU'],
+  'Good morning.': ['GOOD-MORNING'],
+  'My name is Suman.': ['MY', 'NAME', 'SUMAN'],
+  'Welcome to our classroom.': ['WELCOME', 'WE', 'CLASS'],
+  'Today we are learning computer science.': ['TODAY', 'WE', 'LEARN', 'COMPUTER', 'SCIENCE'],
+}
+
+function liveGloss(gloss, available = true) {
+  const entry = lexicon.entries.find((item) => item.gloss === gloss)
+  if (!available) {
+    return {
+      gloss,
+      label: gloss.toLowerCase(),
+      available: false,
+      animation: null,
+      review_status: 'unsupported',
+    }
+  }
+  assert.ok(entry, `missing lexicon entry ${gloss}`)
+  return {
+    gloss,
+    label: entry.label,
+    available: true,
+    animation: entry.animation,
+    review_status: 'experimental',
+  }
+}
+
+test('live final captions produce playable animation for the five sentences', () => {
+  for (const [sentence, expected] of Object.entries(LIVE_SENTENCES)) {
+    const glosses = expected.map((gloss) =>
+      gloss === 'SUMAN' ? liveGloss(gloss, false) : liveGloss(gloss),
+    )
+    const timeline = buildTimeline(glosses)
+    assert.equal(timeline.segments.length, expected.length, sentence)
+
+    glosses.forEach((gloss, index) => {
+      const segment = timeline.segments[index]
+      if (!gloss.available) {
+        assert.equal(segment.animated, false, `${sentence}: ${gloss.gloss}`)
+        assert.equal(segment.animation, null)
+        assert.equal(segment.reviewStatus, 'unsupported')
+        return
+      }
+      assert.equal(segment.animated, true, `${sentence}: ${gloss.gloss} must be animated`)
+      const mid = poseAtTime(timeline, (segment.startMs + segment.endMs) / 2)
+      const moved =
+        mid.hands.right.target.some((v, i) => Math.abs(v - restHandPose('right').target[i]) > 1e-6) ||
+        mid.hands.left.target.some((v, i) => Math.abs(v - restHandPose('left').target[i]) > 1e-6)
+      assert.ok(moved, `${sentence}: ${gloss.gloss} did not move the hands`)
+      assert.deepEqual(
+        poseAtTime(timeline, segment.endMs + 1).hands.right.target,
+        restHandPose('right').target,
+        `${sentence}: ${gloss.gloss} must return to idle`,
+      )
+    })
+  }
+})
+
+test('available gloss without animation data stays text-only (the live regression)', () => {
+  // Before the backend include_animation fix, live captions marked a gloss as
+  // available but omitted its animation. The avatar must never invent motion.
+  const timeline = buildTimeline([{ gloss: 'HELLO', label: 'Hello', available: true }])
+  const segment = timeline.segments[0]
+  assert.equal(segment.animated, false)
+  assert.equal(segment.animation, null)
+  const mid = poseAtTime(timeline, (segment.startMs + segment.endMs) / 2)
+  assert.deepEqual(mid.hands.right.target, restHandPose('right').target)
+  assert.deepEqual(mid.hands.left.target, restHandPose('left').target)
+})
+
 test('left hand mirrors x; movement samples are finite', () => {
   const r = locationTarget('shoulder', 'right')
   const l = locationTarget('shoulder', 'left')

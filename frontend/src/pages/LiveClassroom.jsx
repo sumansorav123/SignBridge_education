@@ -99,7 +99,7 @@ function LiveClassroom({ role }) {
   const onFinal = useCallback(
     (text, confidence) => {
       const start = Math.max(0, Date.now() - captionStartedAtRef.current + captionOffsetRef.current)
-      socket.send({
+      const sent = socket.send({
         type: 'subtitle',
         text,
         source_language: sourceLanguage,
@@ -108,6 +108,9 @@ function LiveClassroom({ role }) {
         end_ms: start + 3000,
         confidence,
       })
+      if (!sent) {
+        setCaptionError('The live connection is not ready. Reconnect before sending this caption.')
+      }
       setInterim('')
     },
     [socket, sourceLanguage],
@@ -533,6 +536,7 @@ function LiveClassroom({ role }) {
 
   const isLive = lecture?.status === 'live'
   const deafMode = role === 'student' && preferences?.learning_mode === 'deaf'
+  const showSignSupport = role === 'student' && preferences?.avatar_enabled === true
   const translatedCaption = currentCaption?.translated_text || currentCaption?.original_text || currentCaption?.text || ''
   const signInfo = currentCaption?.signs
   const signGlosses = signInfo?.glosses || []
@@ -597,7 +601,7 @@ function LiveClassroom({ role }) {
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-semibold text-ink-500">LEARNING MODE</span>
             <Button
-              onClick={() => updatePreferences({ learning_mode: deafMode ? 'normal' : 'deaf' })}
+              onClick={() => updatePreferences(deafMode ? { learning_mode: 'normal' } : { learning_mode: 'deaf', avatar_enabled: true })}
               variant={deafMode ? 'violet' : 'brand'}
               icon={deafMode ? Hand : Captions}
             >
@@ -752,7 +756,7 @@ function LiveClassroom({ role }) {
         </section>
       ) : null}
 
-      {deafMode ? (
+      {showSignSupport ? (
         <section className="card p-5" aria-live="polite">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>

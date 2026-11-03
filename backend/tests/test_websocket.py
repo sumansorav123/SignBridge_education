@@ -155,6 +155,7 @@ def test_websocket_live_caption_pipeline(
 
                 # Continuous sentences must each carry playable animation data.
                 for sentence in (
+                    "Good morning.",
                     "Hello, how are you?",
                     "My name is Suman.",
                     "Welcome to our classroom.",

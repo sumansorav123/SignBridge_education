@@ -198,28 +198,36 @@ export default function IslAvatar({ signs, captionKey, className = '' }) {
   const [activeIndex, setActiveIndex] = useState(-1)
   const [webglError, setWebglError] = useState('')
 
+  const lastHandledRef = useRef({ key: null, signs: null })
+
   const startTimeline = useCallback((glosses, autoplay) => {
     const st = stateRef.current
     st.timeline = buildTimeline(glosses, { speed: st.speed })
     st.glosses = glosses
     st.playhead = 0
     st.playing = autoplay
+    // A fresh sequence must not inherit captions queued for an older one.
+    st.queue = []
     setTimeline(st.timeline)
     setPlaying(autoplay)
   }, [])
 
-  // New caption: never overlap — queue it behind the sequence that is playing.
+  // New caption or replay: never overlap — queue it behind the sequence that
+  // is playing. `signs` is part of the dependency so a replay of the same
+  // subtitle (for example after a preference change) still starts playback.
   useEffect(() => {
     const glosses = signs?.glosses
     if (!glosses?.length) return
+    const previous = lastHandledRef.current
+    if (previous.key === captionKey && previous.signs === signs) return
+    lastHandledRef.current = { key: captionKey, signs }
     const st = stateRef.current
     if (st.playing && st.timeline) {
       st.queue = [...st.queue, glosses].slice(-3)
     } else {
       startTimeline(glosses, !reducedMotion)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [captionKey])
+  }, [captionKey, signs, reducedMotion, startTimeline])
 
   useEffect(() => {
     stateRef.current.speed = speed
