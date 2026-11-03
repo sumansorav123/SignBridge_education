@@ -32,8 +32,8 @@ class Settings(BaseSettings):
     api_prefix: str = "/api"
 
     # Database
-    database_url: str = f"sqlite:///{(BASE_DIR / 'signbridge.db').as_posix()}"
-    auto_create_tables: bool = True
+    database_url: str = ""
+    auto_create_tables: bool = False
     seed_demo_data: bool = True
 
     # Storage
@@ -117,6 +117,22 @@ class Settings(BaseSettings):
 @lru_cache
 def get_settings() -> Settings:
     settings = Settings()
+    if not settings.database_url.strip():
+        raise RuntimeError(
+            "DATABASE_URL must be configured. Use an explicit SQLite URL for local development "
+            "or a PostgreSQL URL in production."
+        )
+    if settings.is_production and not settings.database_url.startswith(
+        "postgresql+psycopg://"
+    ):
+        raise RuntimeError("DATABASE_URL must use PostgreSQL in production.")
+    if settings.database_url.startswith("sqlite") and settings.environment not in {
+        "development",
+        "dev",
+        "local",
+        "test",
+    }:
+        raise RuntimeError("SQLite is supported only in local development and tests.")
     if settings.is_production and settings.secret_key.startswith("dev-only"):
         raise RuntimeError(
             "SECRET_KEY must be configured in production. "
@@ -129,7 +145,7 @@ def get_settings() -> Settings:
     if settings.is_production and settings.auto_create_tables:
         raise RuntimeError(
             "AUTO_CREATE_TABLES must be false in production. "
-            "Apply a reviewed database migration plan explicitly."
+            "Database schema changes are applied with Alembic migrations."
         )
     logging.getLogger(__name__).setLevel(settings.log_level.upper())
     return settings

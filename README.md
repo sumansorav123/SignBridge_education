@@ -21,8 +21,7 @@ Hearing / Deaf mode · **experimental** procedural 3D ISL avatar (Three.js) · M
 ## Stack
 
 React 19, Vite 6, Tailwind, Three.js, MediaPipe Tasks Vision · FastAPI, SQLAlchemy 2, Alembic, PyJWT, bcrypt ·
-SQLite (development/tests), MySQL, and PostgreSQL driver/URL support (PostgreSQL live integration
-unverified) · WebRTC + WebSocket.
+PostgreSQL in production, explicitly configured SQLite for development/tests · WebRTC + WebSocket.
 
 ## Layout
 
@@ -40,12 +39,15 @@ docs/   PROJECT_AUDIT.md   PROJECT_PROGRESS.md   BUG_REPORT.md   TEST_REPORT.md 
 # backend
 cd backend && python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp ../.env.example .env            # edit; never commit
-uvicorn app.main:app --reload      # http://127.0.0.1:8000  (SQLite + demo seed by default)
+cp ../.env.example .env            # edit; never commit; SQLite is explicitly configured here
+uvicorn app.main:app --reload      # http://127.0.0.1:8000  (local migrations + demo seed)
 
 # frontend (second terminal)
 cd frontend && cp .env.example .env && npm ci && npm run dev    # http://localhost:5173
 ```
+
+The backend runs Alembic migrations before seeding on every startup. For Render's Root Directory,
+commands, PostgreSQL environment, and verification steps, see [`DEPLOYMENT_GUIDE.md`](DEPLOYMENT_GUIDE.md).
 
 `frontend/package-lock.json` is present and `npm ci` works. If dependency versions are changed, run
 `npm install` once to refresh the lockfile.
@@ -87,14 +89,14 @@ cd frontend && npm test          # pure-logic unit tests (Node 22+)
 cd frontend && npm run build
 ```
 
-Latest verified run (2026-11-02): backend **73 passed**; frontend **31 passed**; Python compilation
+Latest previously verified run (2026-11-02): backend **73 passed**; frontend **31 passed**; Python compilation
 passed; production build **exit 0**. Material download authorization, response headers, contents,
 missing-file behavior, and large-file bodies are covered by backend tests. The isolated browser run
 also verified HTTP 200, expected headers/body, and Blob/anchor initiation, but the browser download
 event did not fire, so the saved file itself remains unverified. PostgreSQL URL/driver and offline
-Alembic compilation are verified; live PostgreSQL integration is not. The live Render health endpoint
-currently reports development + SQLite; see [`DEPLOYMENT_GUIDE.md`](DEPLOYMENT_GUIDE.md) before using
-it with real student data.
+Alembic compilation are verified; live PostgreSQL integration is not. Redeploy the backend and verify
+its health endpoint reports production + PostgreSQL before using it with real student data; see
+[`DEPLOYMENT_GUIDE.md`](DEPLOYMENT_GUIDE.md).
 These are automated layers only — see [`TEST_REPORT.md`](TEST_REPORT.md).
 
 ## Common errors

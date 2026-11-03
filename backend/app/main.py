@@ -15,7 +15,7 @@ from app.api.router import api_router
 from app.api.websocket import router as websocket_router
 from app.core.config import settings
 from app.core.logging import configure_logging
-from app.database.session import engine, init_db
+from app.database.session import engine, run_migrations
 from app.seed import seed_demo_data
 from app.sign_language.engine import get_engine
 from app.sign_language.seed import seed_sign_language_animations
@@ -37,7 +37,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         engine.dialect.name,
     )
     settings.ensure_directories()
-    init_db()
+    run_migrations()
     seed_sign_language_animations()
     if settings.seed_demo_data:
         seed_demo_data()

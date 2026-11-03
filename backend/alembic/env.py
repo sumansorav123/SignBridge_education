@@ -17,7 +17,7 @@ from app import models  # noqa: E402,F401  (register every mapper)
 
 config = context.config
 
-if config.config_file_name is not None:
+if config.config_file_name is not None and not config.attributes.get("skip_logging_config"):
     fileConfig(config.config_file_name)
 
 config.set_main_option("sqlalchemy.url", settings.database_url.replace("%", "%%"))

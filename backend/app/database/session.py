@@ -2,7 +2,10 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Generator
+from pathlib import Path
 
+from alembic import command
+from alembic.config import Config
 from sqlalchemy import create_engine, event
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import Session, sessionmaker
@@ -12,6 +15,7 @@ from app.core.config import settings
 logger = logging.getLogger(__name__)
 
 _is_sqlite = settings.database_url.startswith("sqlite")
+_backend_dir = Path(__file__).resolve().parents[2]
 
 engine: Engine = create_engine(
     settings.database_url,
@@ -40,10 +44,8 @@ def get_db() -> Generator[Session, None, None]:
         db.close()
 
 
-def init_db() -> None:
-    from app.database.base import Base
-    from app import models  # noqa: F401  (register all mappers)
-
-    if settings.auto_create_tables:
-        Base.metadata.create_all(bind=engine)
-        logger.info("Database tables ensured (%s)", engine.dialect.name)
+def run_migrations() -> None:
+    config = Config(str(_backend_dir / "alembic.ini"))
+    config.attributes["skip_logging_config"] = True
+    command.upgrade(config, "head")
+    logger.info("Database migrations applied (%s)", engine.dialect.name)

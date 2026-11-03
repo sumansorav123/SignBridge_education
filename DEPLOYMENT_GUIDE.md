@@ -15,7 +15,7 @@ Do not present this as production-ready until the acceptance checklist in §9 is
 | Component | Runtime | Persistence |
 |---|---|---|
 | Frontend | Static Vite build served by a CDN/reverse proxy | None |
-| Backend API | Uvicorn/FastAPI | PostgreSQL (driver/URL support implemented, live integration unverified), MySQL, or SQLite (single instance only) |
+| Backend API | Uvicorn/FastAPI | PostgreSQL in production (live integration unverified); explicitly configured SQLite for local development/tests |
 | Realtime | WebSocket `/ws/classroom/{id}` and `/ws/notifications` | In-process hubs |
 | Media | Browser WebRTC peer connections | Optional TURN relay |
 | Files | Local `STORAGE_ROOT` for recordings/materials | Must be a persistent volume |
@@ -34,16 +34,17 @@ ENVIRONMENT=production
 DEBUG=false
 SECRET_KEY=<48+ random chars>        # python -c "import secrets; print(secrets.token_urlsafe(48))"
 DATABASE_URL=postgresql://<user>:<password>@<host>:5432/<database>
-AUTO_CREATE_TABLES=false              # apply reviewed migrations instead
+AUTO_CREATE_TABLES=false              # schema is managed by Alembic
 SEED_DEMO_DATA=false                  # startup fails if true in production
 CORS_ORIGINS=https://your-frontend.example
 STORAGE_ROOT=/srv/signbridge/storage  # persistent volume
 ```
 
-When `ENVIRONMENT=production`, startup requires a non-default `SECRET_KEY`,
-`SEED_DEMO_DATA=false`, and `AUTO_CREATE_TABLES=false`. `DEBUG=false` is also required operationally,
-although it is not currently enforced by the settings validator. Schema changes must be applied
-through a reviewed migration plan; startup will not create tables in production.
+When `ENVIRONMENT=production`, startup requires a non-default `SECRET_KEY`, a PostgreSQL
+`DATABASE_URL`, `SEED_DEMO_DATA=false`, and `AUTO_CREATE_TABLES=false`. `DEBUG=false` is also
+required operationally, although it is not currently enforced by the settings validator. Startup
+applies reviewed Alembic migrations before seeding and fails if a migration cannot be applied; it
+does not use SQLAlchemy `create_all`.
 
 Frontend (`frontend/.env`, build-time values):
 
@@ -113,6 +114,62 @@ No database was switched, altered, migrated, or reset during this work.
 ---
 
 ## 4. Backend hosting
+
+### Render (FastAPI + PostgreSQL)
+
+Use a Render **Web Service** for the backend and a Render PostgreSQL database. The Root Directory
+is `SignBridge/backend` when the repository contains this handover's top-level `SignBridge` folder;
+if `SignBridge` itself is the repository root, use `backend`.
+
+Configure these exact commands:
+
+```text
+Build Command: pip install -r requirements.txt
+Start Command: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+```
+
+Set the web service's `DATABASE_URL` from the linked Render PostgreSQL database's **Internal
+Database URL**. Do not copy credentials into source files or use the SQLite example URL. Set
+`ENVIRONMENT=production`, `AUTO_CREATE_TABLES=false`, `SEED_DEMO_DATA=false`, a fresh random
+`SECRET_KEY`, and `CORS_ORIGINS` to the exact HTTPS frontend origin. Keep the existing
+`psycopg[binary]` and `alembic` requirements installed; no additional packages are needed.
+
+On each app start, the lifespan applies `alembic upgrade head` before either seed function runs. A
+migration error stops startup and is not swallowed. The existing migration chain includes
+`sign_language_animations` and the other model tables, followed by the recording-offset and
+classroom-join-request migrations. Alembic imports `app.models` before migration execution so its
+metadata includes every ORM model.
+
+Deploy and verify:
+
+1. Create the Render PostgreSQL instance and Web Service, set the Root Directory, commands, and
+   environment variables above, and link `DATABASE_URL` to the database's internal URL.
+2. Deploy and wait for the service to become live. Review logs for the startup line reporting
+   `production` and `postgresql`, `Database migrations applied`, both seed completion logs, and
+   `Startup complete`. A failed connection or migration must leave startup failed.
+3. Check `GET /health` (or `/api/health`): `environment` must be `production` and
+   `database.dialect` must be `postgresql` with status `ok`.
+4. In Render's PostgreSQL query tool, verify the migration version and animation table:
+
+   ```sql
+   SELECT version_num FROM alembic_version;
+   SELECT to_regclass('public.sign_language_animations');
+   SELECT count(*) FROM sign_language_animations;
+   ```
+
+   The table lookup must return `sign_language_animations`, and the count should be nonzero after
+   the bundled lexicon seed succeeds. Redeploy once and confirm the count does not increase from
+   duplicate seed rows.
+
+The migration chain is safe for a new/empty database and applies additive migrations to a database
+already tracked by Alembic; it does not drop or reset data. If a database already contains
+application tables but has no `alembic_version` record, do not blindly run or stamp the initial
+migration. Back up the database, compare its schema and data with the full model/migration history,
+and use a reviewed, schema-specific adoption or forward-migration procedure before deployment.
+Startup intentionally fails instead of masking a schema mismatch.
+
+Render's local filesystem is ephemeral unless a persistent disk is configured. Configure
+`STORAGE_ROOT` on a persistent disk if recordings/materials must survive service restarts.
 
 - Run behind a reverse proxy that supports WebSocket upgrade (`/api/*` and `/ws/*`).
 - Use one worker for demos, or add shared pub/sub (e.g. Redis) before scaling out; notification and

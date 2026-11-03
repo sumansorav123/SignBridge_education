@@ -11,6 +11,7 @@ from app.core.config import Settings, get_settings
 def _set_safe_production_environment(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("ENVIRONMENT", "production")
     monkeypatch.setenv("SECRET_KEY", "test-production-secret-that-is-not-a-default")
+    monkeypatch.setenv("DATABASE_URL", "postgresql://test:test@localhost/signbridge")
     monkeypatch.setenv("SEED_DEMO_DATA", "false")
     monkeypatch.setenv("AUTO_CREATE_TABLES", "false")
 
@@ -38,6 +39,28 @@ def test_production_accepts_explicit_manual_schema_management(
         assert settings.auto_create_tables is False
     finally:
         get_settings.cache_clear()
+
+
+def test_production_requires_database_url(monkeypatch: pytest.MonkeyPatch) -> None:
+    _set_safe_production_environment(monkeypatch)
+    monkeypatch.delenv("DATABASE_URL")
+    get_settings.cache_clear()
+
+    with pytest.raises(RuntimeError, match="DATABASE_URL must be configured"):
+        get_settings()
+
+    get_settings.cache_clear()
+
+
+def test_production_rejects_sqlite(monkeypatch: pytest.MonkeyPatch) -> None:
+    _set_safe_production_environment(monkeypatch)
+    monkeypatch.setenv("DATABASE_URL", "sqlite:///./signbridge.db")
+    get_settings.cache_clear()
+
+    with pytest.raises(RuntimeError, match="DATABASE_URL must use PostgreSQL"):
+        get_settings()
+
+    get_settings.cache_clear()
 
 
 def test_sign_language_seed_does_not_create_missing_schema(
