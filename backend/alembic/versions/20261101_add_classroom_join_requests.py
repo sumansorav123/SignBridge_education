@@ -1,7 +1,7 @@
 """add classroom join approval requests
 
 Revision ID: 20261101_join_requests
-Revises: 20261101_add_recording_start_offset
+Revises: 20261101_recording_offset
 Create Date: 2026-11-01
 """
 from __future__ import annotations
@@ -13,7 +13,7 @@ import sqlalchemy as sa
 
 
 revision: str = "20261101_join_requests"
-down_revision: Union[str, None] = "20261101_add_recording_start_offset"
+down_revision: Union[str, None] = "20261101_recording_offset"
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 

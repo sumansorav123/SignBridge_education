@@ -1,6 +1,6 @@
 """add recording start offset
 
-Revision ID: 20261101_add_recording_start_offset
+Revision ID: 20261101_recording_offset
 Revises: 2360156ebd08
 Create Date: 2026-11-01
 
@@ -16,7 +16,7 @@ from alembic import op
 import sqlalchemy as sa
 
 
-revision: str = "20261101_add_recording_start_offset"
+revision: str = "20261101_recording_offset"
 down_revision: Union[str, None] = "2360156ebd08"
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
