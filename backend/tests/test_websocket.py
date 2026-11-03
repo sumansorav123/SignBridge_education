@@ -138,10 +138,49 @@ def test_websocket_live_caption_pipeline(
                 assert caption["signs"]["language"] == "isl"
                 assert caption["signs"]["glosses"]
                 assert caption["signs"]["grammar_note"]
+                animated_glosses = [
+                    gloss for gloss in caption["signs"]["glosses"] if gloss["available"]
+                ]
+                assert animated_glosses, "expected at least one catalogued sign"
+                for gloss in animated_glosses:
+                    assert gloss["animation"], (
+                        "final live captions must include animation data so the "
+                        "student-side avatar can move"
+                    )
+                    assert gloss["animation"]["hands"]
 
                 ack = _next_of_type(teacher_socket, "subtitle-ack")
                 assert ack["sequence"] == 1
                 assert ack["delivered_to"] >= 1
+
+                # Continuous sentences must each carry playable animation data.
+                for sentence in (
+                    "Hello, how are you?",
+                    "My name is Suman.",
+                    "Welcome to our classroom.",
+                    "Today we are learning computer science.",
+                ):
+                    teacher_socket.send_json(
+                        {
+                            "type": "subtitle",
+                            "text": sentence,
+                            "is_final": True,
+                            "start_ms": 2500,
+                            "end_ms": 5200,
+                        }
+                    )
+                    sentence_caption = _next_of_type(student_socket, "subtitle")
+                    assert sentence_caption["original_text"] == sentence
+                    playable = [
+                        gloss
+                        for gloss in sentence_caption["signs"]["glosses"]
+                        if gloss["available"]
+                    ]
+                    assert playable, f"expected mapped signs for {sentence!r}"
+                    assert any(gloss["animation"] for gloss in playable), sentence
+                    assert sentence_caption["signs"]["unsupported"] == (
+                        ["suman"] if "Suman" in sentence else []
+                    )
 
                 teacher_socket.send_json(
                     {
@@ -171,6 +210,15 @@ def test_websocket_live_caption_pipeline(
                 replay = _next_of_type(student_socket, "subtitle")
                 assert replay["is_replay"] is True
                 assert replay["language"] == "hi"
+                replay_glosses = [
+                    gloss for gloss in replay["signs"]["glosses"] if gloss["available"]
+                ]
+                assert replay_glosses
+                for gloss in replay_glosses:
+                    assert gloss["animation"], (
+                        "replayed captions must include animation data so the "
+                        "student-side avatar can move"
+                    )
 
                 student_socket.send_json({"type": "ping"})
                 pong = _next_of_type(student_socket, "pong")

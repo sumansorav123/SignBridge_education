@@ -253,8 +253,13 @@ def process_final_caption(
         confidence=confidence,
         languages=languages,
     )
+    # Live captions must carry the animation spec itself: the student-side
+    # avatar builds its pose timeline from `glosses[].animation`. An
+    # `animation_id` alone is not enough because the frontend does not fetch
+    # the catalog for every caption.
     result["signs"] = {
-        language: build_signs(text, language) for language in sorted(set(sign_languages))
+        language: build_signs(text, language, include_animation=True)
+        for language in sorted(set(sign_languages))
     }
     return result
 
@@ -488,7 +493,9 @@ def retranslate_last(classroom_id: int, language: str, sign_language: str) -> di
         lecture_id = lecture.id
 
     outcome = translate_languages(text, source, [language])[language]
-    signs = build_signs(text, sign_language)
+    # Replays (on join or after a preference change) use the same avatar data
+    # contract as live final captions.
+    signs = build_signs(text, sign_language, include_animation=True)
     return {
         "type": "subtitle",
         "subtitle_id": subtitle_id,
