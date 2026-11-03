@@ -4,6 +4,7 @@ from datetime import datetime
 
 from fastapi import APIRouter, HTTPException
 from sqlalchemy import select, update
+from sqlalchemy.sql import Select
 from sqlalchemy.orm import Session, joinedload
 
 from app.api.deps import DbSession, StudentUser, TeacherUser
@@ -19,6 +20,15 @@ REQUEST_OPTIONS = (
     joinedload(ClassroomJoinRequest.classroom).joinedload(Classroom.teacher),
     joinedload(ClassroomJoinRequest.student),
 )
+
+
+def _owned_request_statement(request_id: int) -> Select:
+    return (
+        select(ClassroomJoinRequest)
+        .options(*REQUEST_OPTIONS)
+        .where(ClassroomJoinRequest.id == request_id)
+        .with_for_update(of=ClassroomJoinRequest)
+    )
 
 
 @router.get(
@@ -89,10 +99,7 @@ def _get_owned_request(
     db: Session,
 ) -> ClassroomJoinRequest:
     join_request = db.scalar(
-        select(ClassroomJoinRequest)
-        .options(*REQUEST_OPTIONS)
-        .where(ClassroomJoinRequest.id == request_id)
-        .with_for_update()
+        _owned_request_statement(request_id)
     )
     if join_request is None or join_request.classroom.teacher_id != teacher_id:
         raise HTTPException(status_code=404, detail="Join request not found.")
@@ -222,7 +229,7 @@ def cancel_join_request(
             ClassroomJoinRequest.id == request_id,
             ClassroomJoinRequest.student_id == user.id,
         )
-        .with_for_update()
+        .with_for_update(of=ClassroomJoinRequest)
     )
     if join_request is None:
         raise HTTPException(status_code=404, detail="Join request not found.")

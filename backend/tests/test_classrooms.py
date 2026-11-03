@@ -1,8 +1,23 @@
 from __future__ import annotations
 
 from fastapi.testclient import TestClient
+from sqlalchemy import select
+from sqlalchemy.dialects import postgresql
 
+from app.api.join_requests import _owned_request_statement
+from app.database.session import SessionLocal
+from app.models import ClassroomEnrollment, ClassroomJoinRequest
 from tests.conftest import auth_headers, login
+
+
+def test_join_request_lock_targets_only_request_row_for_postgresql() -> None:
+    sql = str(
+        _owned_request_statement(42).compile(dialect=postgresql.dialect())
+    )
+
+    assert "LEFT OUTER JOIN classrooms" in sql
+    assert "LEFT OUTER JOIN users" in sql
+    assert "FOR UPDATE OF classroom_join_requests" in sql
 
 
 def test_teacher_dashboard_and_classrooms(client: TestClient, teacher: dict) -> None:
@@ -74,12 +89,47 @@ def test_join_classroom_with_code(client: TestClient, teacher: dict) -> None:
     denied = client.get("/api/student/classrooms", headers=headers)
     assert all(item["id"] != 1 for item in denied.json())
 
+    unauthorized = client.post(
+        f"/api/classroom-join-requests/{request_id}/approve",
+        headers=auth_headers(student),
+    )
+    assert unauthorized.status_code == 403
+
     approval = client.post(
         f"/api/classroom-join-requests/{request_id}/approve",
         headers=auth_headers(teacher),
     )
     assert approval.status_code == 200
     assert approval.json()["status"] == "approved"
+    assert approval.json()["reviewed_at"] is not None
+    with SessionLocal() as db:
+        persisted_request = db.get(ClassroomJoinRequest, request_id)
+        assert persisted_request is not None
+        assert persisted_request.status == "approved"
+        assert persisted_request.pending_slot is None
+        assert persisted_request.reviewed_at is not None
+        assert persisted_request.reviewed_by == teacher["user"]["id"]
+        enrollment = db.scalar(
+            select(ClassroomEnrollment).where(
+                ClassroomEnrollment.classroom_id == persisted_request.classroom_id,
+                ClassroomEnrollment.student_id == persisted_request.student_id,
+            )
+        )
+        assert enrollment is not None
+        assert enrollment.status == "active"
+
+    duplicate_approval = client.post(
+        f"/api/classroom-join-requests/{request_id}/approve",
+        headers=auth_headers(teacher),
+    )
+    assert duplicate_approval.status_code == 409
+
+    missing_request = client.post(
+        "/api/classroom-join-requests/2147483647/approve",
+        headers=auth_headers(teacher),
+    )
+    assert missing_request.status_code == 404
+
     enrolled = client.get("/api/student/classrooms", headers=headers)
     assert any(item["id"] == 1 for item in enrolled.json())
 
